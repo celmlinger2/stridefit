@@ -20,7 +20,7 @@ body {
 }
 
 .btn-primary {
-  @apply rounded-full bg-navy-900 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-navy-950 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-secondary {

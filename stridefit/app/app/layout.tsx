@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import AppNav from "@/components/AppNav";
+import AppShell from "@/components/AppShell";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -22,7 +22,7 @@ export default async function AppLayout({
   // OAuth signups bypass the signup form: record consent on first app load.
   const { data: profile } = await supabase
     .from("profiles")
-    .select("health_data_consent")
+    .select("health_data_consent, display_name")
     .eq("id", user.id)
     .single();
 
@@ -40,10 +40,8 @@ export default async function AppLayout({
       .eq("id", user.id);
   }
 
-  return (
-    <div className="min-h-screen bg-cream">
-      <AppNav />
-      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">{children}</main>
-    </div>
-  );
+  const userLabel =
+    profile?.display_name || user.email || "Member";
+
+  return <AppShell userLabel={userLabel}>{children}</AppShell>;
 }

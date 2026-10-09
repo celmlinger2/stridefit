@@ -148,14 +148,15 @@ export default function NutritionPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-black tracking-tight text-ink">Nutrition</h1>
-      <p className="mt-1 text-muted">Log meals and watch your day fill up.</p>
+      <p className="eyebrow">Fuel</p>
+      <h1 className="mt-2 font-display text-6xl uppercase leading-[0.95] tracking-wide text-ink">Nutrition<span className="text-brand-500">.</span></h1>
+      <p className="mt-2 text-muted">Log meals and watch your day fill up.</p>
 
       {error && <p className="error-text mt-4">{error}</p>}
 
       {/* Daily totals */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-ink">Today&apos;s totals</h2>
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Today&apos;s totals</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-4">
           {[
             { label: "Calories", val: totals.calories, target: profile?.calorie_target ?? null, unit: "" },
@@ -218,7 +219,7 @@ export default function NutritionPage() {
 
       {/* Add food */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-ink">Log food</h2>
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Log food</h2>
         <form onSubmit={addLog} className="mt-4 grid gap-4 sm:grid-cols-2">
           <div>
             <label className="label">Meal</label>
@@ -255,7 +256,7 @@ export default function NutritionPage() {
 
       {/* Today's log */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-ink">Today&apos;s log</h2>
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Today&apos;s log</h2>
         {loading ? (
           <p className="mt-4 text-sm text-muted">Loading…</p>
         ) : logs.length === 0 ? (

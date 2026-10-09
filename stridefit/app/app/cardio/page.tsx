@@ -132,15 +132,16 @@ export default function CardioPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-black tracking-tight text-ink">Cardio</h1>
-      <p className="mt-1 text-muted">Log runs, walks, and cardio — or import from your watch.</p>
+      <p className="eyebrow">Move</p>
+      <h1 className="mt-2 font-display text-6xl uppercase leading-[0.95] tracking-wide text-ink">Cardio<span className="text-brand-500">.</span></h1>
+      <p className="mt-2 text-muted">Log runs, walks, and cardio — or import from your watch.</p>
 
       {error && <p className="error-text mt-4">{error}</p>}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         {/* Manual log */}
         <div className="card">
-          <h2 className="text-lg font-bold text-ink">Log activity</h2>
+          <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Log activity</h2>
           <form onSubmit={handleManualLog} className="mt-4 space-y-4">
             <div>
               <label className="label">Activity</label>
@@ -170,7 +171,7 @@ export default function CardioPage() {
 
         {/* File import */}
         <div className="card">
-          <h2 className="text-lg font-bold text-ink">Import from file</h2>
+          <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Import from file</h2>
           <p className="mt-1 text-sm text-muted">
             Upload a <strong>.gpx</strong> or <strong>.tcx</strong> export from Strava,
             Garmin, or your watch. We&apos;ll read the distance and duration —
@@ -220,7 +221,7 @@ export default function CardioPage() {
 
       {/* Recent activity */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-ink">Recent activity</h2>
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Recent activity</h2>
         {loading ? (
           <p className="mt-3 text-sm text-muted">Loading…</p>
         ) : logs.length === 0 ? (
@@ -249,7 +250,7 @@ export default function CardioPage() {
 
       {/* Events */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-ink">Upcoming events</h2>
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Upcoming events</h2>
         <p className="mt-1 text-sm text-muted">Races, challenges, and group runs you&apos;re training for.</p>
         <form onSubmit={addEvent} className="mt-4 grid gap-3 sm:grid-cols-2">
           <div>

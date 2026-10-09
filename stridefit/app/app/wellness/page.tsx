@@ -56,8 +56,9 @@ export default async function WellnessPage({
 
   return (
     <div>
-      <h1 className="text-3xl font-black tracking-tight text-ink">Wellness</h1>
-      <p className="mt-1 text-muted">
+      <p className="eyebrow">Recover</p>
+      <h1 className="mt-2 font-display text-6xl uppercase leading-[0.95] tracking-wide text-ink">Wellness<span className="text-brand-500">.</span></h1>
+      <p className="mt-2 text-muted">
         Recovery, mindset, and motivation — the other half of fitness.
       </p>
 
@@ -83,7 +84,7 @@ export default async function WellnessPage({
             <span className="inline-block rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-bold text-brand-800">
               {t.category}
             </span>
-            <h2 className="mt-3 text-lg font-bold text-ink">{t.title}</h2>
+            <h2 className="mt-3 font-display text-2xl uppercase tracking-wide text-ink">{t.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">{t.body}</p>
           </article>
         ))}

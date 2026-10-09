@@ -103,7 +103,7 @@ export default function WorkoutsPage() {
   if (view === "new-template") {
     return (
       <div className="mx-auto max-w-xl">
-        <h1 className="text-3xl font-black text-ink">New workout template</h1>
+        <h1 className="font-display text-5xl uppercase tracking-wide text-ink">New template<span className="text-brand-500">.</span></h1>
         <div className="card mt-6">
           <form onSubmit={createTemplate} className="space-y-4">
             <div>
@@ -133,7 +133,7 @@ export default function WorkoutsPage() {
   if (view === "log-workout") {
     return (
       <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-black text-ink">
+        <h1 className="font-display text-5xl uppercase tracking-wide text-ink">
           {activeTemplate ? activeTemplate.name : "Freestyle workout"}
         </h1>
         <p className="mt-1 text-muted">Add exercises and sets as you go.</p>
@@ -192,8 +192,9 @@ export default function WorkoutsPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-ink">Workouts</h1>
-          <p className="mt-1 text-muted">Templates, logging, and history.</p>
+          <p className="eyebrow">Train</p>
+          <h1 className="mt-2 font-display text-6xl uppercase leading-[0.95] tracking-wide text-ink">Workouts<span className="text-brand-500">.</span></h1>
+          <p className="mt-2 text-muted">Templates, logging, and history.</p>
         </div>
         <div className="flex gap-2">
           <button onClick={() => setView("new-template")} className="btn-secondary">New template</button>
@@ -203,7 +204,7 @@ export default function WorkoutsPage() {
 
       {error && <p className="error-text mt-4">{error}</p>}
 
-      <h2 className="mt-8 text-lg font-bold text-ink">Your templates</h2>
+      <h2 className="mt-10 font-display text-3xl uppercase tracking-wide text-ink">Your templates</h2>
       {loading ? (
         <p className="mt-3 text-sm text-muted">Loading…</p>
       ) : templates.length === 0 ? (
@@ -233,7 +234,7 @@ export default function WorkoutsPage() {
         </div>
       )}
 
-      <h2 className="mt-8 text-lg font-bold text-ink">Recent history</h2>
+      <h2 className="mt-10 font-display text-3xl uppercase tracking-wide text-ink">Recent history</h2>
       {history.length === 0 ? (
         <p className="mt-3 text-sm text-muted">No workouts logged yet. Your history will appear here.</p>
       ) : (
