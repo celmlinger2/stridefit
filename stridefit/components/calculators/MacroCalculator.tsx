@@ -71,11 +71,11 @@ export default function MacroCalculator() {
               className={`rounded-xl border p-3 text-left ${
                 style === s.value
                   ? "border-brand-500 bg-brand-50"
-                  : "border-slate-200 hover:border-slate-300"
+                  : "border-line hover:border-line"
               }`}
             >
-              <p className="text-sm font-bold text-slate-900">{s.label}</p>
-              <p className="mt-1 text-xs text-slate-500">{s.desc}</p>
+              <p className="text-sm font-bold text-ink">{s.label}</p>
+              <p className="mt-1 text-xs text-muted">{s.desc}</p>
             </button>
           ))}
         </div>
@@ -92,13 +92,13 @@ export default function MacroCalculator() {
               { label: "Carbs", value: result.carbsG, color: "text-amber-600" },
               { label: "Fat", value: result.fatG, color: "text-sky-600" },
             ].map((m) => (
-              <div key={m.label} className="rounded-xl bg-white p-4 text-center">
-                <p className="text-xs font-semibold text-slate-500">{m.label}</p>
-                <p className={`text-3xl font-black ${m.color}`}>{m.value}<span className="text-sm font-medium text-slate-500">g</span></p>
+              <div key={m.label} className="rounded-xl border border-line bg-card p-4 text-center">
+                <p className="text-xs font-semibold text-muted">{m.label}</p>
+                <p className={`text-3xl font-black ${m.color}`}>{m.value}<span className="text-sm font-medium text-muted">g</span></p>
               </div>
             ))}
           </div>
-          <p className="mt-3 text-xs text-slate-500">
+          <p className="mt-3 text-xs text-muted">
             Protein set first ({presets[style].proteinPerKg}g per kg body weight); remaining
             calories split between carbs and fat.
           </p>

@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function MacrosPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-tight text-ink sm:text-4xl">
           Macro Calculator
         </h1>
-        <p className="mt-4 leading-relaxed text-slate-600">
+        <p className="mt-4 leading-relaxed text-muted">
           Calories tell you <em>how much</em> to eat; macros tell you{" "}
           <em>what</em> to eat. Protein drives muscle repair and satiety, carbs
           fuel training, and fats support hormones. Enter your daily calorie
@@ -33,8 +33,8 @@ export default function MacrosPage() {
           <MacroCalculator />
         </div>
 
-        <div className="mt-12 space-y-4 text-sm leading-relaxed text-slate-600">
-          <h2 className="text-xl font-bold text-slate-900">Which split should I pick?</h2>
+        <div className="mt-12 space-y-4 text-sm leading-relaxed text-muted">
+          <h2 className="text-xl font-bold text-ink">Which split should I pick?</h2>
           <p>
             <strong>Balanced</strong> works for most beginners.{" "}
             <strong>High-protein</strong> suits anyone cutting weight or building
@@ -43,7 +43,7 @@ export default function MacrosPage() {
             simply prefer fattier foods. The best split is the one you can stick
             to for months.
           </p>
-          <h2 className="text-xl font-bold text-slate-900">Track it daily</h2>
+          <h2 className="text-xl font-bold text-ink">Track it daily</h2>
           <p>
             Targets only work if you measure against them. StrideFit&apos;s free
             nutrition tracker lets you log meals and watch your macros fill up

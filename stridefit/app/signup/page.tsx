@@ -71,10 +71,10 @@ export default function SignupPage() {
 
   if (checkEmail) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-cream px-4">
         <div className="card w-full max-w-md text-center">
-          <h1 className="text-2xl font-extrabold text-slate-900">Check your inbox</h1>
-          <p className="mt-2 text-sm text-slate-600">
+          <h1 className="text-2xl font-extrabold text-ink">Check your inbox</h1>
+          <p className="mt-2 text-sm text-muted">
             We sent a confirmation link to <strong>{email}</strong>. Click it to
             finish creating your account.
           </p>
@@ -84,15 +84,15 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10">
+    <div className="flex min-h-screen items-center justify-center bg-cream px-4 py-10">
       <div className="w-full max-w-md">
         <Link href="/" className="mb-6 flex items-center justify-center gap-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-xl font-black text-white">S</span>
-          <span className="text-2xl font-extrabold text-slate-900">StrideFit</span>
+                    <img src="/stride-lightning-icon.svg" alt="StrideFit logo" className="h-10 w-10 rounded-xl" />
+          <span className="font-display text-3xl leading-none tracking-wide text-ink">stridefit<span className="text-brand-500">.</span></span>
         </Link>
         <div className="card">
-          <h1 className="text-2xl font-extrabold text-slate-900">Create your free account</h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <h1 className="text-2xl font-extrabold text-ink">Create your free account</h1>
+          <p className="mt-1 text-sm text-muted">
             Track nutrition, workouts, and cardio — free forever.
           </p>
 
@@ -112,14 +112,14 @@ export default function SignupPage() {
               <input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} className="field" placeholder="At least 8 characters" />
             </div>
 
-            <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-slate-50 p-4 text-sm">
+            <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-sand p-4 text-sm">
               <input
                 type="checkbox"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
                 className="mt-0.5 h-4 w-4 accent-brand-600"
               />
-              <span className="text-slate-700">
+              <span className="text-ink">
                 I consent to StrideFit collecting and storing my health and
                 fitness data (meals, workouts, cardio activity) to provide the
                 service, as described in the{" "}
@@ -135,15 +135,15 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <div className="my-5 flex items-center gap-3 text-xs text-slate-400">
-            <span className="h-px flex-1 bg-slate-200" /> or <span className="h-px flex-1 bg-slate-200" />
+          <div className="my-5 flex items-center gap-3 text-xs text-muted">
+            <span className="h-px flex-1 bg-line" /> or <span className="h-px flex-1 bg-line" />
           </div>
 
           <button onClick={handleGoogle} className="btn-secondary w-full">
             Continue with Google
           </button>
 
-          <p className="mt-6 text-center text-sm text-slate-600">
+          <p className="mt-6 text-center text-sm text-muted">
             Already have an account?{" "}
             <Link href="/login" className="font-bold text-brand-700 hover:underline">
               Log in

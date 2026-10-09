@@ -132,15 +132,15 @@ export default function CardioPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-black tracking-tight text-slate-900">Cardio</h1>
-      <p className="mt-1 text-slate-600">Log runs, walks, and cardio — or import from your watch.</p>
+      <h1 className="text-3xl font-black tracking-tight text-ink">Cardio</h1>
+      <p className="mt-1 text-muted">Log runs, walks, and cardio — or import from your watch.</p>
 
       {error && <p className="error-text mt-4">{error}</p>}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         {/* Manual log */}
         <div className="card">
-          <h2 className="text-lg font-bold text-slate-900">Log activity</h2>
+          <h2 className="text-lg font-bold text-ink">Log activity</h2>
           <form onSubmit={handleManualLog} className="mt-4 space-y-4">
             <div>
               <label className="label">Activity</label>
@@ -170,8 +170,8 @@ export default function CardioPage() {
 
         {/* File import */}
         <div className="card">
-          <h2 className="text-lg font-bold text-slate-900">Import from file</h2>
-          <p className="mt-1 text-sm text-slate-600">
+          <h2 className="text-lg font-bold text-ink">Import from file</h2>
+          <p className="mt-1 text-sm text-muted">
             Upload a <strong>.gpx</strong> or <strong>.tcx</strong> export from Strava,
             Garmin, or your watch. We&apos;ll read the distance and duration —
             you confirm before anything is saved.
@@ -185,9 +185,9 @@ export default function CardioPage() {
             <form onSubmit={saveImported} className="mt-5 rounded-2xl bg-brand-50 p-4">
               <p className="text-sm font-bold text-brand-900">
                 Found: {parsed.distanceKm ?? "—"} km in {parsed.durationMin ?? "—"} min
-                <span className="ml-2 rounded-full bg-white px-2 py-0.5 text-xs uppercase">{parsed.source}</span>
+                <span className="ml-2 rounded-full bg-cream px-2 py-0.5 text-xs uppercase">{parsed.source}</span>
               </p>
-              <p className="mt-1 text-xs text-slate-600">
+              <p className="mt-1 text-xs text-muted">
                 MVP parsing reads track-point distance and timestamps. Always
                 double-check — then save to confirm.
               </p>
@@ -220,18 +220,18 @@ export default function CardioPage() {
 
       {/* Recent activity */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-slate-900">Recent activity</h2>
+        <h2 className="text-lg font-bold text-ink">Recent activity</h2>
         {loading ? (
-          <p className="mt-3 text-sm text-slate-500">Loading…</p>
+          <p className="mt-3 text-sm text-muted">Loading…</p>
         ) : logs.length === 0 ? (
-          <p className="mt-3 text-sm text-slate-500">No cardio logged yet. Log your first run, walk, or ride above.</p>
+          <p className="mt-3 text-sm text-muted">No cardio logged yet. Log your first run, walk, or ride above.</p>
         ) : (
-          <ul className="mt-3 divide-y divide-slate-100">
+          <ul className="mt-3 divide-y divide-line">
             {logs.map((l) => (
               <li key={l.id} className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-sm font-bold capitalize text-slate-900">{l.activity_type}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-sm font-bold capitalize text-ink">{l.activity_type}</p>
+                  <p className="text-xs text-muted">
                     {new Date(l.performed_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                     {l.distance_km ? ` · ${Number(l.distance_km)} km` : ""}
                     {l.duration_min ? ` · ${Number(l.duration_min)} min` : ""}
@@ -249,8 +249,8 @@ export default function CardioPage() {
 
       {/* Events */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-slate-900">Upcoming events</h2>
-        <p className="mt-1 text-sm text-slate-600">Races, challenges, and group runs you&apos;re training for.</p>
+        <h2 className="text-lg font-bold text-ink">Upcoming events</h2>
+        <p className="mt-1 text-sm text-muted">Races, challenges, and group runs you&apos;re training for.</p>
         <form onSubmit={addEvent} className="mt-4 grid gap-3 sm:grid-cols-2">
           <div>
             <label className="label">Event name</label>
@@ -275,11 +275,11 @@ export default function CardioPage() {
           </div>
         </form>
         {events.length > 0 && (
-          <ul className="mt-4 divide-y divide-slate-100">
+          <ul className="mt-4 divide-y divide-line">
             {events.map((ev) => (
               <li key={ev.id} className="py-3">
-                <p className="text-sm font-bold text-slate-900">{ev.name}</p>
-                <p className="text-xs text-slate-500">
+                <p className="text-sm font-bold text-ink">{ev.name}</p>
+                <p className="text-xs text-muted">
                   {new Date(ev.event_date + "T12:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" })}
                   {" · "}{ev.event_type.replace("_", " ")}
                   {ev.goal ? ` · Goal: ${ev.goal}` : ""}

@@ -44,7 +44,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
         <p className="rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-900">
@@ -52,19 +52,19 @@ export default function PrivacyPage() {
           have a qualified attorney review and finalize it before launch,
           especially the bracketed items.
         </p>
-        <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-900">
+        <h1 className="mt-6 text-3xl font-black tracking-tight text-ink">
           Privacy Policy
         </h1>
-        <p className="mt-2 text-sm text-slate-500">Last updated: [date]</p>
+        <p className="mt-2 text-sm text-muted">Last updated: [date]</p>
         <div className="mt-8 space-y-8">
           {sections.map((s) => (
             <section key={s.heading}>
-              <h2 className="text-xl font-bold text-slate-900">{s.heading}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.body}</p>
+              <h2 className="text-xl font-bold text-ink">{s.heading}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
             </section>
           ))}
         </div>
-        <p className="mt-10 rounded-2xl bg-slate-100 p-4 text-xs leading-relaxed text-slate-600">
+        <p className="mt-10 rounded-2xl bg-slate-100 p-4 text-xs leading-relaxed text-muted">
           <strong>Not medical advice:</strong> StrideFit provides general fitness
           information only and is not a substitute for professional medical
           advice, diagnosis, or treatment.

@@ -103,7 +103,7 @@ export default function WorkoutsPage() {
   if (view === "new-template") {
     return (
       <div className="mx-auto max-w-xl">
-        <h1 className="text-3xl font-black text-slate-900">New workout template</h1>
+        <h1 className="text-3xl font-black text-ink">New workout template</h1>
         <div className="card mt-6">
           <form onSubmit={createTemplate} className="space-y-4">
             <div>
@@ -133,10 +133,10 @@ export default function WorkoutsPage() {
   if (view === "log-workout") {
     return (
       <div className="mx-auto max-w-2xl">
-        <h1 className="text-3xl font-black text-slate-900">
+        <h1 className="text-3xl font-black text-ink">
           {activeTemplate ? activeTemplate.name : "Freestyle workout"}
         </h1>
-        <p className="mt-1 text-slate-600">Add exercises and sets as you go.</p>
+        <p className="mt-1 text-muted">Add exercises and sets as you go.</p>
         {error && <p className="error-text mt-4">{error}</p>}
         <form onSubmit={finishWorkout} className="mt-6 space-y-4">
           {exercises.map((ex, ei) => (
@@ -150,7 +150,7 @@ export default function WorkoutsPage() {
               <div className="mt-3 space-y-2">
                 {ex.sets.map((set, si) => (
                   <div key={si} className="flex items-center gap-2">
-                    <span className="w-12 text-xs font-bold text-slate-500">Set {si + 1}</span>
+                    <span className="w-12 text-xs font-bold text-muted">Set {si + 1}</span>
                     <input
                       type="number" min={1} value={set.reps}
                       onChange={(e) => updateSet(ei, si, { reps: parseInt(e.target.value, 10) || 0 })}
@@ -192,8 +192,8 @@ export default function WorkoutsPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-slate-900">Workouts</h1>
-          <p className="mt-1 text-slate-600">Templates, logging, and history.</p>
+          <h1 className="text-3xl font-black tracking-tight text-ink">Workouts</h1>
+          <p className="mt-1 text-muted">Templates, logging, and history.</p>
         </div>
         <div className="flex gap-2">
           <button onClick={() => setView("new-template")} className="btn-secondary">New template</button>
@@ -203,12 +203,12 @@ export default function WorkoutsPage() {
 
       {error && <p className="error-text mt-4">{error}</p>}
 
-      <h2 className="mt-8 text-lg font-bold text-slate-900">Your templates</h2>
+      <h2 className="mt-8 text-lg font-bold text-ink">Your templates</h2>
       {loading ? (
-        <p className="mt-3 text-sm text-slate-500">Loading…</p>
+        <p className="mt-3 text-sm text-muted">Loading…</p>
       ) : templates.length === 0 ? (
         <div className="card mt-3 border-dashed">
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted">
             No templates yet. Create one for routines you repeat — or just hit{" "}
             <strong>Start workout</strong> for a freestyle session.
           </p>
@@ -218,10 +218,10 @@ export default function WorkoutsPage() {
           {templates.map((t) => (
             <div key={t.id} className="card">
               <div className="flex items-center justify-between">
-                <h3 className="font-bold text-slate-900">{t.name}</h3>
+                <h3 className="font-bold text-ink">{t.name}</h3>
                 <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-bold text-brand-800">{t.difficulty}</span>
               </div>
-              {t.description && <p className="mt-2 text-sm text-slate-600">{t.description}</p>}
+              {t.description && <p className="mt-2 text-sm text-muted">{t.description}</p>}
               <button
                 onClick={() => { setActiveTemplate(t); setView("log-workout"); }}
                 className="mt-4 text-sm font-bold text-brand-700 hover:underline"
@@ -233,21 +233,21 @@ export default function WorkoutsPage() {
         </div>
       )}
 
-      <h2 className="mt-8 text-lg font-bold text-slate-900">Recent history</h2>
+      <h2 className="mt-8 text-lg font-bold text-ink">Recent history</h2>
       {history.length === 0 ? (
-        <p className="mt-3 text-sm text-slate-500">No workouts logged yet. Your history will appear here.</p>
+        <p className="mt-3 text-sm text-muted">No workouts logged yet. Your history will appear here.</p>
       ) : (
-        <ul className="mt-3 divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white">
+        <ul className="mt-3 divide-y divide-line rounded-2xl border border-line bg-card">
           {history.map((w) => {
             const exs = (w.exercises ?? []) as LoggedExercise[];
             const setCount = exs.reduce((s, e) => s + (e.sets?.length ?? 0), 0);
             return (
               <li key={w.id} className="flex items-center justify-between px-5 py-3">
                 <div>
-                  <p className="text-sm font-bold text-slate-900">
+                  <p className="text-sm font-bold text-ink">
                     {new Date(w.performed_at).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}
                   </p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted">
                     {exs.length} exercise{exs.length === 1 ? "" : "s"} · {setCount} sets
                     {w.notes ? ` · ${w.notes}` : ""}
                   </p>

@@ -65,7 +65,7 @@ export default function PaceCalculator() {
         <button
           onClick={() => setMode("pace")}
           className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-            mode === "pace" ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+            mode === "pace" ? "bg-brand-600 text-white" : "bg-sand text-muted hover:bg-line"
           }`}
         >
           Find my pace
@@ -73,7 +73,7 @@ export default function PaceCalculator() {
         <button
           onClick={() => setMode("time")}
           className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-            mode === "time" ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+            mode === "time" ? "bg-brand-600 text-white" : "bg-sand text-muted hover:bg-line"
           }`}
         >
           Predict finish time
@@ -96,7 +96,7 @@ export default function PaceCalculator() {
             <button
               key={d.label}
               onClick={() => setDistance(d.km)}
-              className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+              className="rounded-full bg-sand px-3 py-1 text-xs font-semibold text-muted hover:bg-line"
             >
               {d.label}
             </button>
@@ -115,7 +115,7 @@ export default function PaceCalculator() {
             ].map((f) => (
               <div key={f.l} className="flex-1">
                 <input type="number" min={0} value={f.v} onChange={(e) => f.set(e.target.value)} className="field text-center" />
-                <p className="mt-1 text-center text-xs text-slate-500">{f.l}</p>
+                <p className="mt-1 text-center text-xs text-muted">{f.l}</p>
               </div>
             ))}
           </div>
@@ -126,11 +126,11 @@ export default function PaceCalculator() {
           <div className="flex max-w-xs gap-2">
             <div className="flex-1">
               <input type="number" min={0} value={paceM} onChange={(e) => setPaceM(e.target.value)} className="field text-center" />
-              <p className="mt-1 text-center text-xs text-slate-500">min</p>
+              <p className="mt-1 text-center text-xs text-muted">min</p>
             </div>
             <div className="flex-1">
               <input type="number" min={0} max={59} value={paceS} onChange={(e) => setPaceS(e.target.value)} className="field text-center" />
-              <p className="mt-1 text-center text-xs text-slate-500">sec</p>
+              <p className="mt-1 text-center text-xs text-muted">sec</p>
             </div>
           </div>
         </div>
@@ -141,14 +141,14 @@ export default function PaceCalculator() {
           {paceResult && (
             <>
               <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Your pace</p>
-              <p className="mt-2 text-4xl font-black text-slate-900">{formatPace(paceResult.perKm, false)}<span className="text-base font-medium text-slate-500"> /km</span></p>
-              <p className="mt-1 text-lg font-bold text-slate-600">{formatPace(paceResult.perKm, true)}<span className="text-sm font-medium text-slate-500"> /mile</span></p>
+              <p className="mt-2 text-4xl font-black text-ink">{formatPace(paceResult.perKm, false)}<span className="text-base font-medium text-muted"> /km</span></p>
+              <p className="mt-1 text-lg font-bold text-muted">{formatPace(paceResult.perKm, true)}<span className="text-sm font-medium text-muted"> /mile</span></p>
             </>
           )}
           {timeResult && (
             <>
               <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Predicted finish time</p>
-              <p className="mt-2 text-4xl font-black text-slate-900">{formatDuration(timeResult.total)}</p>
+              <p className="mt-2 text-4xl font-black text-ink">{formatDuration(timeResult.total)}</p>
             </>
           )}
         </div>

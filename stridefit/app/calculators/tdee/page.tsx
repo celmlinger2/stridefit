@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function TdeePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cream">
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-tight text-ink sm:text-4xl">
           TDEE Calculator
         </h1>
-        <p className="mt-4 leading-relaxed text-slate-600">
+        <p className="mt-4 leading-relaxed text-muted">
           Your <strong>Total Daily Energy Expenditure (TDEE)</strong> is the
           number of calories you burn in a day, including exercise. It&apos;s
           the starting point for any nutrition plan: eat below it to lose
@@ -31,8 +31,8 @@ export default function TdeePage() {
           <TdeeCalculator />
         </div>
 
-        <div className="prose-sm mt-12 space-y-4 text-sm leading-relaxed text-slate-600">
-          <h2 className="text-xl font-bold text-slate-900">How to use your TDEE</h2>
+        <div className="prose-sm mt-12 space-y-4 text-sm leading-relaxed text-muted">
+          <h2 className="text-xl font-bold text-ink">How to use your TDEE</h2>
           <p>
             For <strong>fat loss</strong>, aim for roughly 300–500 calories below
             your TDEE. For <strong>muscle gain</strong>, aim for 200–300 above
@@ -40,7 +40,7 @@ export default function TdeePage() {
             your actual intake in StrideFit&apos;s free nutrition tracker to see
             how you compare.
           </p>
-          <h2 className="text-xl font-bold text-slate-900">How accurate is this?</h2>
+          <h2 className="text-xl font-bold text-ink">How accurate is this?</h2>
           <p>
             TDEE calculators estimate within about 10% for most people. Activity
             level is the biggest variable — when in doubt, pick the lower

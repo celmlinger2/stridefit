@@ -148,14 +148,14 @@ export default function NutritionPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-black tracking-tight text-slate-900">Nutrition</h1>
-      <p className="mt-1 text-slate-600">Log meals and watch your day fill up.</p>
+      <h1 className="text-3xl font-black tracking-tight text-ink">Nutrition</h1>
+      <p className="mt-1 text-muted">Log meals and watch your day fill up.</p>
 
       {error && <p className="error-text mt-4">{error}</p>}
 
       {/* Daily totals */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-slate-900">Today&apos;s totals</h2>
+        <h2 className="text-lg font-bold text-ink">Today&apos;s totals</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-4">
           {[
             { label: "Calories", val: totals.calories, target: profile?.calorie_target ?? null, unit: "" },
@@ -167,17 +167,17 @@ export default function NutritionPage() {
             return (
               <div key={m.label}>
                 <div className="flex items-baseline justify-between">
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{m.label}</p>
+                  <p className="text-xs font-bold uppercase tracking-wide text-muted">{m.label}</p>
                   {p !== null && <p className="text-xs font-bold text-brand-700">{p}%</p>}
                 </div>
-                <p className="mt-1 text-2xl font-black text-slate-900">
+                <p className="mt-1 text-2xl font-black text-ink">
                   {m.val.toLocaleString()}
-                  <span className="text-sm font-medium text-slate-500">
+                  <span className="text-sm font-medium text-muted">
                     {m.target ? ` / ${m.target.toLocaleString()}${m.unit}` : m.unit}
                   </span>
                 </p>
                 {p !== null && (
-                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
+                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-sand">
                     <div className="h-full rounded-full bg-brand-500" style={{ width: `${Math.min(p, 100)}%` }} />
                   </div>
                 )}
@@ -218,7 +218,7 @@ export default function NutritionPage() {
 
       {/* Add food */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-slate-900">Log food</h2>
+        <h2 className="text-lg font-bold text-ink">Log food</h2>
         <form onSubmit={addLog} className="mt-4 grid gap-4 sm:grid-cols-2">
           <div>
             <label className="label">Meal</label>
@@ -255,20 +255,20 @@ export default function NutritionPage() {
 
       {/* Today's log */}
       <div className="card mt-6">
-        <h2 className="text-lg font-bold text-slate-900">Today&apos;s log</h2>
+        <h2 className="text-lg font-bold text-ink">Today&apos;s log</h2>
         {loading ? (
-          <p className="mt-4 text-sm text-slate-500">Loading…</p>
+          <p className="mt-4 text-sm text-muted">Loading…</p>
         ) : logs.length === 0 ? (
-          <p className="mt-4 text-sm text-slate-500">
+          <p className="mt-4 text-sm text-muted">
             Nothing logged yet today. Add your first meal above — small steps count.
           </p>
         ) : (
-          <ul className="mt-4 divide-y divide-slate-100">
+          <ul className="mt-4 divide-y divide-line">
             {logs.map((l) => (
               <li key={l.id} className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-sm font-bold text-slate-900">{l.food_name}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-sm font-bold text-ink">{l.food_name}</p>
+                  <p className="text-xs text-muted">
                     {l.meal_type} · {l.calories} kcal · P {Number(l.protein_g)}g · C {Number(l.carbs_g)}g · F {Number(l.fat_g)}g
                   </p>
                 </div>

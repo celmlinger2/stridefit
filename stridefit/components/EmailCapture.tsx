@@ -26,7 +26,7 @@ export default function EmailCapture({
 
   if (done) {
     return (
-      <div className="rounded-2xl bg-brand-50 p-6 text-center">
+      <div className="rounded-3xl bg-brand-50 p-6 text-center">
         <p className="font-semibold text-brand-800">
           You&apos;re on the list — welcome to StrideFit!
         </p>
@@ -35,9 +35,10 @@ export default function EmailCapture({
   }
 
   return (
-    <div className="rounded-2xl bg-slate-900 p-6 sm:p-8">
-      <h3 className="text-xl font-bold text-white">{heading}</h3>
-      <p className="mt-1 text-sm text-slate-300">{subheading}</p>
+    <div className="rounded-3xl bg-navy-900 p-6 sm:p-8">
+      <p className="eyebrow !text-brand-400">Free to start · No credit card</p>
+      <h3 className="mt-2 font-display text-4xl uppercase tracking-wide text-white">{heading}</h3>
+      <p className="mt-1 text-sm text-cream/70">{subheading}</p>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
         <input
           type="email"
@@ -45,11 +46,11 @@ export default function EmailCapture({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="w-full rounded-full border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-brand-400 focus:outline-none"
+          className="w-full rounded-full border border-navy-700 bg-navy-800 px-4 py-2.5 text-sm text-white placeholder:text-cream/40 focus:border-brand-400 focus:outline-none"
         />
         <button
           type="submit"
-          className="rounded-full bg-accent-400 px-6 py-2.5 text-sm font-bold text-slate-900 hover:bg-accent-300"
+          className="rounded-full bg-brand-500 px-6 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
         >
           Subscribe
         </button>

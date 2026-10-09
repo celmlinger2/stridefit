@@ -2,31 +2,40 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+    <footer className="bg-navy-900 text-cream">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-lg font-extrabold text-slate-900">StrideFit</p>
-            <p className="mt-1 max-w-sm text-sm text-slate-600">
+            <Link href="/" className="flex items-center gap-2.5">
+              <img
+                src="/stride-lightning-icon.svg"
+                alt="StrideFit logo"
+                className="h-8 w-8 rounded-lg"
+              />
+              <span className="font-display text-2xl leading-none tracking-wide text-cream">
+                stridefit<span className="text-brand-500">.</span>
+              </span>
+            </Link>
+            <p className="mt-3 max-w-sm text-sm text-cream/70">
               Diet tracking, workouts, and cardio events in one free,
               beginner-friendly place.
             </p>
           </div>
           <div className="flex gap-12 text-sm">
             <div className="flex flex-col gap-2">
-              <p className="font-semibold text-slate-900">Tools</p>
-              <Link href="/calculators/tdee" className="text-slate-600 hover:text-brand-700">TDEE calculator</Link>
-              <Link href="/calculators/macros" className="text-slate-600 hover:text-brand-700">Macro calculator</Link>
-              <Link href="/calculators/pace" className="text-slate-600 hover:text-brand-700">Pace calculator</Link>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Tools</p>
+              <Link href="/calculators/tdee" className="text-cream/70 hover:text-white">TDEE calculator</Link>
+              <Link href="/calculators/macros" className="text-cream/70 hover:text-white">Macro calculator</Link>
+              <Link href="/calculators/pace" className="text-cream/70 hover:text-white">Pace calculator</Link>
             </div>
             <div className="flex flex-col gap-2">
-              <p className="font-semibold text-slate-900">Legal</p>
-              <Link href="/privacy" className="text-slate-600 hover:text-brand-700">Privacy policy</Link>
-              <Link href="/terms" className="text-slate-600 hover:text-brand-700">Terms of service</Link>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Legal</p>
+              <Link href="/privacy" className="text-cream/70 hover:text-white">Privacy policy</Link>
+              <Link href="/terms" className="text-cream/70 hover:text-white">Terms of service</Link>
             </div>
           </div>
         </div>
-        <p className="mt-8 border-t border-slate-200 pt-6 text-xs text-slate-500">
+        <p className="mt-10 border-t border-cream/15 pt-6 text-xs text-cream/60">
           StrideFit provides general fitness information only and is not medical
           advice. Consult a qualified professional before changing your diet or
           exercise routine.

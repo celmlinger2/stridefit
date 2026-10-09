@@ -9,14 +9,16 @@ const links = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-cream/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-lg font-black text-white">
-            S
-          </span>
-          <span className="text-xl font-extrabold tracking-tight text-slate-900">
-            StrideFit
+        <Link href="/" className="flex items-center gap-2.5">
+          <img
+            src="/stride-lightning-icon.svg"
+            alt="StrideFit logo"
+            className="h-9 w-9 rounded-xl"
+          />
+          <span className="font-display text-[1.7rem] leading-none tracking-wide text-ink">
+            stridefit<span className="text-brand-500">.</span>
           </span>
         </Link>
         <div className="hidden items-center gap-6 md:flex">
@@ -24,7 +26,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-slate-600 hover:text-brand-700"
+              className="text-sm font-medium text-muted hover:text-brand-600"
             >
               {l.label}
             </Link>
@@ -33,13 +35,13 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="text-sm font-semibold text-slate-700 hover:text-brand-700"
+            className="text-sm font-semibold text-ink hover:text-brand-600"
           >
             Log in
           </Link>
           <Link
             href="/signup"
-            className="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+            className="rounded-full bg-navy-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-navy-950"
           >
             Get started free
           </Link>

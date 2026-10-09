@@ -55,7 +55,7 @@ export default function TdeeCalculator() {
             className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
               units === u
                 ? "bg-brand-600 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                : "bg-sand text-muted hover:bg-line"
             }`}
           >
             {u === "metric" ? "Metric (kg/cm)" : "Imperial (lb/in)"}
@@ -99,12 +99,12 @@ export default function TdeeCalculator() {
             Your results
           </p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl bg-white p-4">
-              <p className="text-xs font-semibold text-slate-500">BMR</p>
-              <p className="text-2xl font-black text-slate-900">{result.bmr.toLocaleString()} <span className="text-sm font-medium">kcal</span></p>
+            <div className="rounded-xl border border-line bg-card p-4">
+              <p className="text-xs font-semibold text-muted">BMR</p>
+              <p className="text-2xl font-black text-ink">{result.bmr.toLocaleString()} <span className="text-sm font-medium">kcal</span></p>
             </div>
-            <div className="rounded-xl bg-white p-4">
-              <p className="text-xs font-semibold text-slate-500">TDEE</p>
+            <div className="rounded-xl border border-line bg-card p-4">
+              <p className="text-xs font-semibold text-muted">TDEE</p>
               <p className="text-2xl font-black text-brand-700">{result.tdee.toLocaleString()} <span className="text-sm font-medium">kcal/day</span></p>
             </div>
           </div>

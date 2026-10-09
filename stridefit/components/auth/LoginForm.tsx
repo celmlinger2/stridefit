@@ -38,15 +38,15 @@ export default function LoginForm({ next }: { next: string }) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-cream px-4">
       <div className="w-full max-w-md">
         <Link href="/" className="mb-6 flex items-center justify-center gap-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-xl font-black text-white">S</span>
-          <span className="text-2xl font-extrabold text-slate-900">StrideFit</span>
+                    <img src="/stride-lightning-icon.svg" alt="StrideFit logo" className="h-10 w-10 rounded-xl" />
+          <span className="font-display text-3xl leading-none tracking-wide text-ink">stridefit<span className="text-brand-500">.</span></span>
         </Link>
         <div className="card">
-          <h1 className="text-2xl font-extrabold text-slate-900">Welcome back</h1>
-          <p className="mt-1 text-sm text-slate-600">Log in to continue tracking.</p>
+          <h1 className="text-2xl font-extrabold text-ink">Welcome back</h1>
+          <p className="mt-1 text-sm text-muted">Log in to continue tracking.</p>
 
           {error && <p className="error-text mt-4">{error}</p>}
 
@@ -64,15 +64,15 @@ export default function LoginForm({ next }: { next: string }) {
             </button>
           </form>
 
-          <div className="my-5 flex items-center gap-3 text-xs text-slate-400">
-            <span className="h-px flex-1 bg-slate-200" /> or <span className="h-px flex-1 bg-slate-200" />
+          <div className="my-5 flex items-center gap-3 text-xs text-muted">
+            <span className="h-px flex-1 bg-line" /> or <span className="h-px flex-1 bg-line" />
           </div>
 
           <button onClick={handleGoogle} className="btn-secondary w-full">
             Continue with Google
           </button>
 
-          <p className="mt-6 text-center text-sm text-slate-600">
+          <p className="mt-6 text-center text-sm text-muted">
             New to StrideFit?{" "}
             <Link href="/signup" className="font-bold text-brand-700 hover:underline">
               Create a free account
