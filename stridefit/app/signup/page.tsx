@@ -91,8 +91,9 @@ export default function SignupPage() {
                     <Logo markClassName="h-10 w-10" textClassName="text-3xl" />
         </Link>
         <div className="card">
-          <h1 className="text-2xl font-extrabold text-ink">Create your free account</h1>
-          <p className="mt-1 text-sm text-muted">
+          <p className="eyebrow">Free account</p>
+          <h1 className="mt-2 font-display text-5xl uppercase leading-[0.95] tracking-wide text-ink">Join Stride<span className="text-brand-500">.</span></h1>
+          <p className="mt-2 text-sm text-muted">
             Track nutrition, workouts, and cardio — free forever.
           </p>
 
