@@ -54,12 +54,12 @@ const jsonLd = {
     "New to running? This beginner guide covers the walk-run method, a realistic first-week plan, gear basics, and how to stay consistent — start today.",
   author: {
     "@type": "Organization",
-    name: "StrideFit",
+    name: "Stride",
     url: "https://stridefitapp.com",
   },
   publisher: {
     "@type": "Organization",
-    name: "StrideFit",
+    name: "Stride",
     url: "https://stridefitapp.com",
   },
   mainEntityOfPage: {
@@ -231,7 +231,7 @@ export default function BeginnersGuidePage() {
               href="/calculators/macros"
               className="font-semibold text-brand-600 hover:underline"
             >
-              StrideFit&apos;s macro calculator
+              Stride&apos;s macro calculator
             </Link>{" "}
             can help you figure out what your training actually needs.
           </p>
@@ -345,7 +345,7 @@ export default function BeginnersGuidePage() {
         <div className="mt-12 rounded-3xl bg-navy-900 p-8 text-center">
           <h2 className="font-display text-4xl uppercase tracking-wide text-white">Start Session 1 this week</h2>
           <p className="mx-auto mt-2 max-w-md text-cream/70">
-            Then log it in StrideFit — every run, walk, and interval counts,
+            Then log it in Stride — every run, walk, and interval counts,
             and watching your weeks stack up is the best motivation there is.
             Free forever.
           </p>

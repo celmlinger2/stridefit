@@ -28,7 +28,7 @@ export default function EmailCapture({
     return (
       <div className="rounded-3xl bg-brand-50 p-6 text-center">
         <p className="font-semibold text-brand-800">
-          You&apos;re on the list — welcome to StrideFit!
+          You&apos;re on the list — welcome to Stride!
         </p>
       </div>
     );

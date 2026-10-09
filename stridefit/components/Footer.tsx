@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -6,15 +7,8 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <img
-                src="/stride-lightning-icon.svg"
-                alt="StrideFit logo"
-                className="h-8 w-8 rounded-lg"
-              />
-              <span className="font-display text-2xl leading-none tracking-wide text-cream">
-                stridefit<span className="text-brand-500">.</span>
-              </span>
+            <Link href="/">
+              <Logo dark markClassName="h-8 w-8" textClassName="text-2xl" />
             </Link>
             <p className="mt-3 max-w-sm text-sm text-cream/70">
               Diet tracking, workouts, and cardio events in one free,
@@ -36,7 +30,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="mt-10 border-t border-cream/15 pt-6 text-xs text-cream/60">
-          StrideFit provides general fitness information only and is not medical
+          Stride provides general fitness information only and is not medical
           advice. Consult a qualified professional before changing your diet or
           exercise routine.
         </p>

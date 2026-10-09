@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How StrideFit collects, uses, and protects your data.",
+  description: "How Stride collects, uses, and protects your data.",
 };
 
 const sections = [
@@ -30,11 +30,11 @@ const sections = [
   },
   {
     heading: "Third-party services",
-    body: "We use infrastructure providers (hosting, database, authentication, email) to operate StrideFit. Each processes data only as needed to provide their service. [Provider list to be added before launch.]",
+    body: "We use infrastructure providers (hosting, database, authentication, email) to operate Stride. Each processes data only as needed to provide their service. [Provider list to be added before launch.]",
   },
   {
     heading: "Children",
-    body: "StrideFit is not directed at children under 13, and we do not knowingly collect their data.",
+    body: "Stride is not directed at children under 13, and we do not knowingly collect their data.",
   },
   {
     heading: "Changes to this policy",
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           ))}
         </div>
         <p className="mt-10 rounded-2xl bg-slate-100 p-4 text-xs leading-relaxed text-muted">
-          <strong>Not medical advice:</strong> StrideFit provides general fitness
+          <strong>Not medical advice:</strong> Stride provides general fitness
           information only and is not a substitute for professional medical
           advice, diagnosis, or treatment.
         </p>

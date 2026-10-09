@@ -3,7 +3,7 @@ import LoginForm from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = {
   title: "Log in",
-  description: "Log in to your StrideFit account.",
+  description: "Log in to your Stride account.",
 };
 
 export default async function LoginPage({

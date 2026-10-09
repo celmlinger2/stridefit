@@ -31,7 +31,7 @@ export default function AppNav() {
             S
           </span>
           <span className="text-xl font-extrabold tracking-tight text-ink">
-            StrideFit
+            Stride
           </span>
         </Link>
         <div className="hidden items-center gap-1 md:flex">

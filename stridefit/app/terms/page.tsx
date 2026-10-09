@@ -4,13 +4,13 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms governing your use of StrideFit.",
+  description: "The terms governing your use of Stride.",
 };
 
 const sections = [
   {
     heading: "The service",
-    body: "StrideFit provides fitness and wellness tracking tools: nutrition logging, workout planning, cardio activity logging, event tracking, and wellness content. The service is currently free to use.",
+    body: "Stride provides fitness and wellness tracking tools: nutrition logging, workout planning, cardio activity logging, event tracking, and wellness content. The service is currently free to use.",
   },
   {
     heading: "Your account",
@@ -22,15 +22,15 @@ const sections = [
   },
   {
     heading: "Health disclaimer",
-    body: "StrideFit provides general fitness information only. It is not medical advice, diagnosis, or treatment. Consult a qualified health professional before beginning or changing any diet or exercise program. Use of the service is at your own risk.",
+    body: "Stride provides general fitness information only. It is not medical advice, diagnosis, or treatment. Consult a qualified health professional before beginning or changing any diet or exercise program. Use of the service is at your own risk.",
   },
   {
     heading: "Your data",
-    body: "You retain ownership of the data you log. You grant StrideFit a license to store and process it to operate the service, as described in the Privacy Policy. You may export or delete your data at any time.",
+    body: "You retain ownership of the data you log. You grant Stride a license to store and process it to operate the service, as described in the Privacy Policy. You may export or delete your data at any time.",
   },
   {
     heading: "Limitation of liability",
-    body: "To the maximum extent permitted by law, StrideFit is provided 'as is' without warranties, and our liability is limited. [Have an attorney tailor this section to your jurisdiction.]",
+    body: "To the maximum extent permitted by law, Stride is provided 'as is' without warranties, and our liability is limited. [Have an attorney tailor this section to your jurisdiction.]",
   },
   {
     heading: "Changes",
@@ -65,7 +65,7 @@ export default function TermsPage() {
           ))}
         </div>
         <p className="mt-10 rounded-2xl bg-slate-100 p-4 text-xs leading-relaxed text-muted">
-          <strong>Not medical advice:</strong> StrideFit provides general fitness
+          <strong>Not medical advice:</strong> Stride provides general fitness
           information only and is not a substitute for professional medical
           advice, diagnosis, or treatment.
         </p>

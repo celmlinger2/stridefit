@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/components/Logo";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -41,8 +42,7 @@ export default function LoginForm({ next }: { next: string }) {
     <div className="flex min-h-screen items-center justify-center bg-cream px-4">
       <div className="w-full max-w-md">
         <Link href="/" className="mb-6 flex items-center justify-center gap-2">
-                    <img src="/stride-lightning-icon.svg" alt="StrideFit logo" className="h-10 w-10 rounded-xl" />
-          <span className="font-display text-3xl leading-none tracking-wide text-ink">stridefit<span className="text-brand-500">.</span></span>
+                    <Logo markClassName="h-10 w-10" textClassName="text-3xl" />
         </Link>
         <div className="card">
           <h1 className="text-2xl font-extrabold text-ink">Welcome back</h1>
@@ -73,7 +73,7 @@ export default function LoginForm({ next }: { next: string }) {
           </button>
 
           <p className="mt-6 text-center text-sm text-muted">
-            New to StrideFit?{" "}
+            New to Stride?{" "}
             <Link href="/signup" className="font-bold text-brand-700 hover:underline">
               Create a free account
             </Link>

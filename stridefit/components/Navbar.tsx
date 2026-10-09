@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 const links = [
   { href: "/calculators/tdee", label: "TDEE Calculator" },
@@ -11,15 +12,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-cream/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5">
-          <img
-            src="/stride-lightning-icon.svg"
-            alt="StrideFit logo"
-            className="h-9 w-9 rounded-xl"
-          />
-          <span className="font-display text-[1.7rem] leading-none tracking-wide text-ink">
-            stridefit<span className="text-brand-500">.</span>
-          </span>
+        <Link href="/">
+          <Logo />
         </Link>
         <div className="hidden items-center gap-6 md:flex">
           {links.map((l) => (

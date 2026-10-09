@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "StrideFit — Diet Tracking, Workouts & Cardio in One Free App",
+  title: "Stride — Diet Tracking, Workouts & Cardio in One Free App",
   description:
-    "Track what you eat, plan workouts, and log runs, walks, and cardio events. StrideFit is free and simple enough for beginners, powerful enough for athletes.",
+    "Track what you eat, plan workouts, and log runs, walks, and cardio events. Stride is free and simple enough for beginners, powerful enough for athletes.",
 };
 
 const pillars = [
@@ -119,7 +119,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <p className="eyebrow text-center">How it works</p>
           <h2 className="mt-3 text-center font-display text-5xl uppercase tracking-wide text-ink">
-            How StrideFit works
+            How Stride works
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {steps.map((s, i) => (

@@ -37,7 +37,7 @@ export default function TdeePage() {
             For <strong>fat loss</strong>, aim for roughly 300–500 calories below
             your TDEE. For <strong>muscle gain</strong>, aim for 200–300 above
             it. Recalculate every few weeks as your weight changes — and track
-            your actual intake in StrideFit&apos;s free nutrition tracker to see
+            your actual intake in Stride&apos;s free nutrition tracker to see
             how you compare.
           </p>
           <h2 className="text-xl font-bold text-ink">How accurate is this?</h2>
@@ -52,7 +52,7 @@ export default function TdeePage() {
         <div className="mt-12">
           <EmailCapture
             heading="Track your calories for free"
-            subheading="Join StrideFit and log meals against your TDEE target."
+            subheading="Join Stride and log meals against your TDEE target."
           />
         </div>
       </main>

@@ -39,7 +39,7 @@ export default function PacePage() {
           </ul>
           <h2 className="text-xl font-bold text-ink">Put your pace to work</h2>
           <p>
-            Log every run in StrideFit&apos;s free cardio tracker, import GPX or
+            Log every run in Stride&apos;s free cardio tracker, import GPX or
             TCX files from your watch, and watch your average pace trend down
             over your training block.
           </p>
@@ -48,7 +48,7 @@ export default function PacePage() {
         <div className="mt-12">
           <EmailCapture
             heading="Train smarter, for free"
-            subheading="Join StrideFit and log every run, walk, and cardio session."
+            subheading="Join Stride and log every run, walk, and cardio session."
           />
         </div>
       </main>

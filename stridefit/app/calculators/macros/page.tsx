@@ -45,7 +45,7 @@ export default function MacrosPage() {
           </p>
           <h2 className="text-xl font-bold text-ink">Track it daily</h2>
           <p>
-            Targets only work if you measure against them. StrideFit&apos;s free
+            Targets only work if you measure against them. Stride&apos;s free
             nutrition tracker lets you log meals and watch your macros fill up
             through the day.
           </p>
@@ -54,7 +54,7 @@ export default function MacrosPage() {
         <div className="mt-12">
           <EmailCapture
             heading="Hit your macros every day"
-            subheading="Join StrideFit free and track protein, carbs, and fat."
+            subheading="Join Stride free and track protein, carbs, and fat."
           />
         </div>
       </main>

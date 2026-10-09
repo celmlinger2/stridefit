@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/components/Logo";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -87,8 +88,7 @@ export default function SignupPage() {
     <div className="flex min-h-screen items-center justify-center bg-cream px-4 py-10">
       <div className="w-full max-w-md">
         <Link href="/" className="mb-6 flex items-center justify-center gap-2">
-                    <img src="/stride-lightning-icon.svg" alt="StrideFit logo" className="h-10 w-10 rounded-xl" />
-          <span className="font-display text-3xl leading-none tracking-wide text-ink">stridefit<span className="text-brand-500">.</span></span>
+                    <Logo markClassName="h-10 w-10" textClassName="text-3xl" />
         </Link>
         <div className="card">
           <h1 className="text-2xl font-extrabold text-ink">Create your free account</h1>
@@ -120,7 +120,7 @@ export default function SignupPage() {
                 className="mt-0.5 h-4 w-4 accent-brand-600"
               />
               <span className="text-ink">
-                I consent to StrideFit collecting and storing my health and
+                I consent to Stride collecting and storing my health and
                 fitness data (meals, workouts, cardio activity) to provide the
                 service, as described in the{" "}
                 <Link href="/privacy" className="font-semibold text-brand-700 hover:underline">

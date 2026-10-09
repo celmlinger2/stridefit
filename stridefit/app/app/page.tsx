@@ -121,7 +121,7 @@ export default async function DashboardPage() {
 
       {(foodLogs.length === 0 && !lastWorkout && !lastCardio) && (
         <div className="card mt-6 border-dashed text-center">
-          <p className="text-lg font-bold text-ink">Welcome to StrideFit! 🎉</p>
+          <p className="text-lg font-bold text-ink">Welcome to Stride! 🎉</p>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted">
             Your dashboard will fill in as you track. Start with one small win —
             log a meal, a workout, or a walk.
