@@ -23,6 +23,11 @@ export default function Footer() {
               <Link href="/calculators/pace" className="text-cream/70 hover:text-white">Pace calculator</Link>
             </div>
             <div className="flex flex-col gap-2">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Guides</p>
+              <Link href="/beginners-guide-to-running-walking" className="text-cream/70 hover:text-white">Beginner&apos;s running guide</Link>
+              <Link href="/beginner-5k-training-plan" className="text-cream/70 hover:text-white">8-week 5K training plan</Link>
+            </div>
+            <div className="flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Legal</p>
               <Link href="/privacy" className="text-cream/70 hover:text-white">Privacy policy</Link>
               <Link href="/terms" className="text-cream/70 hover:text-white">Terms of service</Link>

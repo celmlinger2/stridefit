@@ -49,6 +49,19 @@ const steps = [
   },
 ];
 
+const guides = [
+  {
+    href: "/beginners-guide-to-running-walking",
+    title: "Beginner's Guide to Running and Walking",
+    copy: "The walk-run method, a realistic first-week plan, and the consistency system that keeps beginners going.",
+  },
+  {
+    href: "/beginner-5k-training-plan",
+    title: "8-Week Beginner 5K Training Plan",
+    copy: "Three walk-run sessions a week, from your first intervals to race day — no experience needed.",
+  },
+];
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-cream">
@@ -158,6 +171,30 @@ export default function HomePage() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Guides (SEO) */}
+      <section className="bg-sand">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <p className="eyebrow text-center">Learn</p>
+          <h2 className="mt-3 text-center font-display text-5xl uppercase tracking-wide text-ink">
+            Training guides
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-muted">
+            Practical, beginner-friendly plans written by runners, for runners.
+          </p>
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+            {guides.map((g) => (
+              <Link key={g.href} href={g.href} className="card transition hover:shadow-md">
+                <h3 className="text-lg font-bold text-ink">{g.title}</h3>
+                <p className="mt-2 text-sm text-muted">{g.copy}</p>
+                <span className="mt-4 inline-block text-sm font-bold text-brand-600">
+                  Read the guide →
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
