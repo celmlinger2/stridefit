@@ -14,6 +14,11 @@ const PUBLIC_PAGES = [
     changeFrequency: "monthly",
     priority: 0.7,
   },
+  {
+    route: "/beginner-5k-training-plan",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
   { route: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { route: "/terms", changeFrequency: "yearly", priority: 0.3 },
 ] as const;

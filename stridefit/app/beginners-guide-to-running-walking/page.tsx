@@ -310,8 +310,14 @@ export default function BeginnersGuidePage() {
           <p className="mt-3 leading-relaxed text-muted">
             Once you can comfortably alternate 3 minutes of running with 1
             minute of walking for 30 minutes, you&apos;re ready for a structured
-            goal — and the classic first one is a 5K. A beginner 5K plan picks
-            up exactly where this guide leaves off.
+            goal — and the classic first one is a 5K. Our{" "}
+            <Link
+              href="/beginner-5k-training-plan"
+              className="font-semibold text-brand-600 hover:underline"
+            >
+              8-week beginner 5K training plan
+            </Link>{" "}
+            picks up exactly where this guide leaves off.
           </p>
           <p className="mt-3 leading-relaxed text-muted">
             Curious what your easy pace translates to over race distances? Try
