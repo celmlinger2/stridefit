@@ -8,7 +8,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand orange — from the original StrideFit branding
+        // Brand orange — from the original Stride branding
         brand: {
           50: "#FDF4EE",
           100: "#FAE6D7",

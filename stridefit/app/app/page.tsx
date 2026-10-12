@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { CardioLog, FoodLog, WorkoutLog } from "@/lib/database.types";
 import WorkoutOfTheDay from "@/components/WorkoutOfTheDay";
-import { getDailyQuote } from "@/lib/workout-of-the-day";
+import DashboardHero from "@/components/DashboardHero";
 
 function dayKey(d: Date): string {
   return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
@@ -100,9 +100,6 @@ export default async function DashboardPage() {
   }
 
   const name = profile?.display_name || user?.email?.split("@")[0] || "there";
-  const hour = now.getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-  const dateStr = now.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
   const hasAnyData = foodLogs.length > 0 || cardioLogs.length > 0 || workoutLogs.length > 0;
 
   const stats = [
@@ -138,21 +135,9 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      {/* Header */}
-      <p className="eyebrow">Today · {dateStr}</p>
-      <div className="mt-2 flex flex-wrap items-center gap-4">
-        <h1 className="font-display text-6xl uppercase leading-[0.95] tracking-wide text-ink">
-          {greeting}, {name}<span className="text-brand-500">.</span>
-        </h1>
-        {streak > 1 && (
-          <span className="rounded-full bg-brand-100 px-4 py-1.5 text-sm font-bold text-brand-800">
-            {streak}-day streak
-          </span>
-        )}
-      </div>
-      <p className="mt-2 max-w-xl text-[15px] italic leading-relaxed text-muted">
-        &ldquo;{getDailyQuote()}&rdquo;
-      </p>
+      {/* Header — client-rendered so greeting, date, and quote follow the
+          user's local clock and roll over at local midnight. */}
+      <DashboardHero name={name} streak={streak} />
 
       {/* Workout of the day */}
       <div className="mt-8">
