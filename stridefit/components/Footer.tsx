@@ -26,6 +26,7 @@ export default function Footer() {
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Guides</p>
               <Link href="/beginners-guide-to-running-walking" className="text-cream/70 hover:text-white">Beginner&apos;s running guide</Link>
               <Link href="/beginner-5k-training-plan" className="text-cream/70 hover:text-white">8-week 5K training plan</Link>
+              <Link href="/how-to-track-macros" className="text-cream/70 hover:text-white">How to track macros</Link>
             </div>
             <div className="flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Legal</p>

@@ -19,6 +19,11 @@ const PUBLIC_PAGES = [
     changeFrequency: "monthly",
     priority: 0.7,
   },
+  {
+    route: "/how-to-track-macros",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
   { route: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { route: "/terms", changeFrequency: "yearly", priority: 0.3 },
 ] as const;

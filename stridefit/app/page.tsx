@@ -60,6 +60,11 @@ const guides = [
     title: "8-Week Beginner 5K Training Plan",
     copy: "Three walk-run sessions a week, from your first intervals to race day — no experience needed.",
   },
+  {
+    href: "/how-to-track-macros",
+    title: "How to Track Macros",
+    copy: "Set protein, carb, and fat targets and log food without it taking over your life.",
+  },
 ];
 
 export default function HomePage() {
