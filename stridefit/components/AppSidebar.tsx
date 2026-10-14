@@ -52,6 +52,7 @@ const links = [
   { href: "/app/cardio", label: "Cardio", icon: <Icon d="M2 12h4l2.5-6 4 12 2.5-6H22" /> },
   { href: "/app/progress", label: "Progress", icon: <Icon d="M4 20h16 M8 20v-6 M13 20V8 M18 20v-3" /> },
   { href: "/app/nutrition", label: "Nutrition", icon: <Icon d="M4 13h16a8 8 0 0 1-16 0z M9 8l1.5-4 M15 8l-1.5-4" /> },
+  { href: "/app/guides", label: "Guides", icon: <Icon d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /> },
   { href: "/app/account", label: "Account", icon: <GearIcon /> },
   { href: "/app/refer", label: "Refer a friend", icon: <Icon d="M4 10h16v10H4z M3 6.5h18V10H3z M12 6.5V20 M12 6.5C10 6.5 8.6 5.4 8.6 4c0-1 1-1.6 2-1 1.4.8 1.4 3.5 1.4 3.5z M12 6.5c2 0 3.4-1.1 3.4-2.5 0-1-1-1.6-2-1-1.4.8-1.4 3.5-1.4 3.5z" /> },
 ];
