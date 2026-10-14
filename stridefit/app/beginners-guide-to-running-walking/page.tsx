@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ArticleByline from "@/components/ArticleByline";
 
 export const metadata: Metadata = {
   title: "Beginner's Guide to Running and Walking: Start This Week",
@@ -83,6 +84,7 @@ export default function BeginnersGuidePage() {
         <h1 className="mt-2 font-display text-5xl uppercase leading-[0.95] tracking-wide text-ink sm:text-6xl">
           Beginner&apos;s Guide to Starting Running or Walking
         </h1>
+        <ArticleByline published="Oct 9, 2026" readMinutes={7} />
         <p className="mt-4 text-lg leading-relaxed text-muted">
           You don&apos;t need to be fit to start running. You start running to
           get fit — and if running every step sounds like too much, you&apos;re

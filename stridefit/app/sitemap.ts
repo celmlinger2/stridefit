@@ -25,6 +25,11 @@ const PUBLIC_PAGES = [
     priority: 0.7,
   },
   {
+    route: "/guides",
+    changeFrequency: "weekly",
+    priority: 0.8,
+  },
+  {
     route: "/calories-to-lose-weight",
     changeFrequency: "monthly",
     priority: 0.7,

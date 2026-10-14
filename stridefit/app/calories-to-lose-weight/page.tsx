@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ArticleByline from "@/components/ArticleByline";
 
 export const metadata: Metadata = {
   title: "How Many Calories Should I Eat to Lose Weight?",
@@ -85,6 +86,7 @@ export default function CaloriesToLoseWeightPage() {
         <h1 className="mt-2 font-display text-5xl uppercase leading-[0.95] tracking-wide text-ink sm:text-6xl">
           How Many Calories Should I Eat to Lose Weight?
         </h1>
+        <ArticleByline published="Oct 14, 2026" readMinutes={5} />
         <p className="mt-4 text-lg leading-relaxed text-muted">
           The honest answer: <em>slightly fewer than you burn</em>. The useful
           answer — an actual number to eat tomorrow — is a three-step process:

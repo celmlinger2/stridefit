@@ -1,0 +1,48 @@
+export type Guide = {
+  href: string;
+  category: string;
+  title: string;
+  copy: string;
+  image: string;
+  published: string;
+  readMinutes: number;
+};
+
+export const GUIDES: Guide[] = [
+  {
+    href: "/beginners-guide-to-running-walking",
+    category: "Running",
+    title: "Beginner's Guide to Running and Walking",
+    copy: "The walk-run method, a realistic first-week plan, and the consistency system that keeps beginners going.",
+    image: "/guides/running.webp",
+    published: "Oct 9, 2026",
+    readMinutes: 7,
+  },
+  {
+    href: "/beginner-5k-training-plan",
+    category: "Training",
+    title: "8-Week Beginner 5K Training Plan",
+    copy: "Three walk-run sessions a week, from your first intervals to race day — no experience needed.",
+    image: "/guides/5k.webp",
+    published: "Oct 12, 2026",
+    readMinutes: 9,
+  },
+  {
+    href: "/how-to-track-macros",
+    category: "Nutrition",
+    title: "How to Track Macros",
+    copy: "Set protein, carb, and fat targets and log food without it taking over your life.",
+    image: "/guides/macros.webp",
+    published: "Oct 12, 2026",
+    readMinutes: 9,
+  },
+  {
+    href: "/calories-to-lose-weight",
+    category: "Nutrition",
+    title: "How Many Calories Should I Eat to Lose Weight?",
+    copy: "Find your real calorie target: estimate maintenance, pick a deficit, adjust from the trend.",
+    image: "/guides/calories.webp",
+    published: "Oct 14, 2026",
+    readMinutes: 5,
+  },
+];

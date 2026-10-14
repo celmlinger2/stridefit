@@ -22,6 +22,7 @@ export default function MacroCalculator() {
   const [calories, setCalories] = useState("2200");
   const [weight, setWeight] = useState("70");
   const [style, setStyle] = useState<Style>("balanced");
+  const [copied, setCopied] = useState(false);
 
   // Convert the entered weight when switching units so the same person
   // gets the same result in either system.
@@ -51,6 +52,18 @@ export default function MacroCalculator() {
 
     return { proteinG, carbsG, fatG };
   }, [calories, weight, style, units]);
+
+  async function copyResults() {
+    if (!result) return;
+    const text = `My Stride macros: Protein ${result.proteinG}g, Carbs ${result.carbsG}g, Fat ${result.fatG}g per day (${calories} kcal, ${styles.find((s) => s.value === style)?.label} style).`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (permissions) — nothing to copy from.
+    }
+  }
 
   return (
     <div className="card">
@@ -115,6 +128,12 @@ export default function MacroCalculator() {
             Protein set first ({presets[style].proteinPerKg}g per kg body weight); remaining
             calories split between carbs and fat.
           </p>
+          <button
+            onClick={copyResults}
+            className="mt-4 rounded-full border border-ink/15 bg-white px-4 py-2 text-sm font-bold text-ink transition hover:border-brand-500/50 hover:text-brand-600"
+          >
+            {copied ? "Copied!" : "📋 Copy my macros"}
+          </button>
         </div>
       )}
     </div>

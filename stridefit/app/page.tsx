@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EmailCapture from "@/components/EmailCapture";
+import GuideCard from "@/components/GuideCard";
+import { GUIDES } from "@/lib/guides";
 
 export const metadata: Metadata = {
   title: "Stride — Diet Tracking, Workouts & Cardio in One Free App",
@@ -49,28 +51,7 @@ const steps = [
   },
 ];
 
-const guides = [
-  {
-    href: "/beginners-guide-to-running-walking",
-    title: "Beginner's Guide to Running and Walking",
-    copy: "The walk-run method, a realistic first-week plan, and the consistency system that keeps beginners going.",
-  },
-  {
-    href: "/beginner-5k-training-plan",
-    title: "8-Week Beginner 5K Training Plan",
-    copy: "Three walk-run sessions a week, from your first intervals to race day — no experience needed.",
-  },
-  {
-    href: "/how-to-track-macros",
-    title: "How to Track Macros",
-    copy: "Set protein, carb, and fat targets and log food without it taking over your life.",
-  },
-  {
-    href: "/calories-to-lose-weight",
-    title: "How Many Calories Should I Eat to Lose Weight?",
-    copy: "Find your real calorie target: estimate maintenance, pick a deficit, adjust from the trend.",
-  },
-];
+const guides = GUIDES;
 
 export default function HomePage() {
   return (
@@ -254,15 +235,14 @@ export default function HomePage() {
           </p>
           <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
             {guides.map((g) => (
-              <Link key={g.href} href={g.href} className="card transition hover:shadow-md">
-                <h3 className="text-lg font-bold text-ink">{g.title}</h3>
-                <p className="mt-2 text-sm text-muted">{g.copy}</p>
-                <span className="mt-4 inline-block text-sm font-bold text-brand-600">
-                  Read the guide →
-                </span>
-              </Link>
+              <GuideCard key={g.href} guide={g} />
             ))}
           </div>
+          <p className="mt-8 text-center">
+            <Link href="/guides" className="text-sm font-bold text-brand-700 hover:underline">
+              View all guides →
+            </Link>
+          </p>
         </div>
       </section>
 

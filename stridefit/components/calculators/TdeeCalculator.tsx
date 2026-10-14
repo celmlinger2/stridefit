@@ -20,6 +20,7 @@ export default function TdeeCalculator() {
   const [height, setHeight] = useState("165"); // cm or in
   const [weight, setWeight] = useState("65"); // kg or lb
   const [activity, setActivity] = useState(1.55);
+  const [copied, setCopied] = useState(false);
 
   // Convert the entered values when switching units so the same person
   // gets the same result in either system.
@@ -60,6 +61,18 @@ export default function TdeeCalculator() {
       bulk: tdee + 250,
     };
   }, [age, height, weight, sex, activity, units]);
+
+  async function copyResults() {
+    if (!result) return;
+    const text = `My Stride numbers: BMR ${result.bmr.toLocaleString()} kcal, TDEE ${result.tdee.toLocaleString()} kcal/day. Lose weight ~${result.cut.toLocaleString()} kcal/day, Maintain ~${result.maintain.toLocaleString()} kcal/day, Gain muscle ~${result.bulk.toLocaleString()} kcal/day.`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (permissions) — nothing to copy from.
+    }
+  }
 
   return (
     <div className="card">
@@ -129,6 +142,12 @@ export default function TdeeCalculator() {
             <p><strong>Maintain:</strong> ~{result.maintain.toLocaleString()} kcal/day</p>
             <p><strong>Gain muscle:</strong> ~{result.bulk.toLocaleString()} kcal/day</p>
           </div>
+          <button
+            onClick={copyResults}
+            className="mt-4 rounded-full border border-ink/15 bg-white px-4 py-2 text-sm font-bold text-ink transition hover:border-brand-500/50 hover:text-brand-600"
+          >
+            {copied ? "Copied!" : "📋 Copy my numbers"}
+          </button>
         </div>
       ) : (
         <p className="mt-6 rounded-2xl bg-sand p-4 text-sm text-muted">

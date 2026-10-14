@@ -39,3 +39,15 @@ body {
 .eyebrow {
   @apply font-mono text-xs font-medium uppercase tracking-[0.2em] text-brand-600;
 }
+
+/* Print: hide site chrome and interactive-only elements on article pages */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  details {
+    break-inside: avoid;
+  }
+}

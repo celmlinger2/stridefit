@@ -102,6 +102,39 @@ export default async function DashboardPage() {
   const name = profile?.display_name || user?.email?.split("@")[0] || "there";
   const hasAnyData = foodLogs.length > 0 || cardioLogs.length > 0 || workoutLogs.length > 0;
 
+  const wellnessTips = [
+    {
+      title: "Consistency beats intensity",
+      body: "A 20-minute walk you actually do beats the perfect workout you skip. Show up, log it, repeat.",
+    },
+    {
+      title: "Sleep is training",
+      body: "Muscles repair while you sleep. Seven to nine hours is part of the program, not a break from it.",
+    },
+    {
+      title: "Protein at every meal",
+      body: "Spreading protein across the day beats one giant serving. A palm-sized portion per meal is a good rule of thumb.",
+    },
+    {
+      title: "Walk after you eat",
+      body: "A 10-minute walk after meals helps digestion and steadies energy. Easiest habit in fitness.",
+    },
+    {
+      title: "Warm up, always",
+      body: "Five minutes of easy movement before hard effort prevents most beginner injuries.",
+    },
+    {
+      title: "Water first",
+      body: "Dehydration feels like fatigue. A glass of water before your coffee is a small win.",
+    },
+    {
+      title: "Rest days count",
+      body: "Progress happens during recovery. A planned rest day is training, not quitting.",
+    },
+  ];
+  const epochDay = Math.floor(Date.now() / 86_400_000);
+  const dailyTip = wellnessTips[((epochDay % wellnessTips.length) + wellnessTips.length) % wellnessTips.length];
+
   const stats = [
     {
       label: "Day streak",
@@ -114,7 +147,14 @@ export default async function DashboardPage() {
       label: "Calories today",
       value: caloriesToday.toLocaleString(),
       unit: calorieTarget ? `/ ${calorieTarget.toLocaleString()}` : "kcal",
-      sub: caloriePct !== null ? `${caloriePct}% of daily target` : "Set a target in Nutrition.",
+      sub:
+        caloriePct !== null ? (
+          `${caloriePct}% of daily target`
+        ) : (
+          <Link href="/app/nutrition" className="font-bold text-brand-700 hover:underline">
+            Set a target in Nutrition →
+          </Link>
+        ),
       bar: caloriePct,
     },
     {
@@ -138,6 +178,19 @@ export default async function DashboardPage() {
       {/* Header — client-rendered so greeting, date, and quote follow the
           user's local clock and roll over at local midnight. */}
       <DashboardHero name={name} streak={streak} />
+
+      {/* Empty state — first for brand-new users, so they see a welcome, not zeros */}
+      {!hasAnyData && (
+        <div className="card mt-8 border-dashed text-center">
+          <p className="font-display text-4xl uppercase tracking-wide text-ink">
+            Welcome to Stride<span className="text-brand-500">.</span>
+          </p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-muted">
+            Your dashboard fills in as you track. Start with one small win —
+            log a meal, a workout, or a walk.
+          </p>
+        </div>
+      )}
 
       {/* Workout of the day */}
       <div className="mt-8">
@@ -218,28 +271,16 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Empty state */}
-      {!hasAnyData && (
-        <div className="card mt-6 border-dashed text-center">
-          <p className="font-display text-4xl uppercase tracking-wide text-ink">
-            Welcome to Stride<span className="text-brand-500">.</span>
-          </p>
-          <p className="mx-auto mt-2 max-w-md text-sm text-muted">
-            Your dashboard fills in as you track. Start with one small win —
-            log a meal, a workout, or a walk.
-          </p>
-        </div>
-      )}
+      {/* Empty state (moved above) */}
 
-      {/* Wellness tip */}
+      {/* Wellness tip — rotates daily, seeded by the calendar date */}
       <div className="mt-6 rounded-3xl bg-navy-900 p-6 sm:p-8">
         <p className="eyebrow !text-brand-400">Wellness tip</p>
         <p className="mt-2 font-display text-3xl uppercase leading-tight tracking-wide text-white">
-          Consistency beats intensity<span className="text-brand-500">.</span>
+          {dailyTip.title}<span className="text-brand-500">.</span>
         </p>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-cream/70">
-          A 20-minute walk you actually do beats the perfect workout you skip.
-          Show up, log it, repeat.
+          {dailyTip.body}
         </p>
         <Link
           href="/app/wellness"

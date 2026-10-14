@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ArticleByline from "@/components/ArticleByline";
+import PrintButton from "@/components/PrintButton";
 
 export const metadata: Metadata = {
   title: "8-Week Beginner 5K Training Plan (Walk-Run Method)",
@@ -160,6 +162,7 @@ export default function Beginner5kPlanPage() {
         <h1 className="mt-2 font-display text-5xl uppercase leading-[0.95] tracking-wide text-ink sm:text-6xl">
           8-Week Beginner 5K Training Plan (Walk-Run Method)
         </h1>
+        <ArticleByline published="Oct 12, 2026" readMinutes={9} />
         <p className="mt-4 text-lg leading-relaxed text-muted">
           Eight weeks from now, you can cross the finish line of a 5K. Not by
           running yourself into the ground, and not by &ldquo;pushing through
@@ -181,7 +184,32 @@ export default function Beginner5kPlanPage() {
           — it gets you to this exact starting line.)
         </p>
 
-        <section className="mt-10">
+        {/* Table of contents */}
+        <nav aria-label="On this page" className="no-print mt-8 rounded-2xl bg-sand p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="font-display text-xl uppercase tracking-wide text-ink">On this page</p>
+            <PrintButton />
+          </div>
+          <ul className="mt-3 grid gap-1.5 text-sm sm:grid-cols-2">
+            <li><a href="#how-it-works" className="font-semibold text-brand-700 hover:underline">How the plan works</a></li>
+            <li><a href="#schedule" className="font-semibold text-brand-700 hover:underline">The 8-week schedule</a></li>
+            {weeks.map((w, i) => (
+              <li key={w.title}>
+                <a href={`#week-${i + 1}`} className="text-muted hover:text-brand-700 hover:underline">
+                  Week {i + 1} — {w.title.split("—")[1]?.trim()}
+                </a>
+              </li>
+            ))}
+            <li><a href="#race-week" className="font-semibold text-brand-700 hover:underline">Race week and race day</a></li>
+            <li><a href="#fueling" className="font-semibold text-brand-700 hover:underline">Fueling for the plan</a></li>
+            <li><a href="#troubleshooting" className="font-semibold text-brand-700 hover:underline">Troubleshooting</a></li>
+            <li><a href="#strength" className="font-semibold text-brand-700 hover:underline">10-minute strength add-on</a></li>
+            <li><a href="#whats-next" className="font-semibold text-brand-700 hover:underline">After the 5K: what&apos;s next</a></li>
+            <li><a href="#faq" className="font-semibold text-brand-700 hover:underline">Frequently asked questions</a></li>
+          </ul>
+        </nav>
+
+        <section id="how-it-works" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             How the plan works
           </h2>
@@ -229,26 +257,39 @@ export default function Beginner5kPlanPage() {
           </ul>
         </section>
 
-        <section className="mt-10">
+        <section id="schedule" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             The 8-week schedule
           </h2>
           <p className="mt-3 leading-relaxed text-muted">
             Read each session as: warm up 5 min walk → main set → cool down 5
-            min walk. Only the main set is listed.
+            min walk. Only the main set is listed. Tap a week to expand it.
           </p>
           <div className="mt-4 space-y-4">
-            {weeks.map((w) => (
-              <div key={w.title} className="rounded-2xl bg-sand p-5">
-                <p className="font-display text-2xl uppercase tracking-wide text-ink">
-                  {w.title}
-                </p>
+            {weeks.map((w, i) => (
+              <details
+                key={w.title}
+                id={`week-${i + 1}`}
+                open={i === 0}
+                className="group scroll-mt-24 rounded-2xl bg-sand p-5"
+              >
+                <summary className="cursor-pointer list-none font-display text-2xl uppercase tracking-wide text-ink">
+                  <span className="flex items-center justify-between gap-3">
+                    {w.title}
+                    <span className="text-sm font-sans font-bold normal-case tracking-normal text-brand-700 group-open:hidden">
+                      Expand +
+                    </span>
+                    <span className="hidden text-sm font-sans font-bold normal-case tracking-normal text-brand-700 group-open:inline">
+                      Collapse −
+                    </span>
+                  </span>
+                </summary>
                 <ul className="mt-2 space-y-1 text-slate-700">
                   {w.sessions.map((s) => (
                     <li key={s}>• {s}</li>
                   ))}
                 </ul>
-              </div>
+              </details>
             ))}
           </div>
           <p className="mt-4 leading-relaxed text-muted">
@@ -259,7 +300,7 @@ export default function Beginner5kPlanPage() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section id="race-week" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             Race week and race day
           </h2>
@@ -302,7 +343,7 @@ export default function Beginner5kPlanPage() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section id="fueling" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             Fueling for the plan
           </h2>
@@ -343,7 +384,7 @@ export default function Beginner5kPlanPage() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section id="troubleshooting" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             Troubleshooting
           </h2>
@@ -359,7 +400,7 @@ export default function Beginner5kPlanPage() {
           </ul>
         </section>
 
-        <section className="mt-10">
+        <section id="strength" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             The 10-minute strength add-on (optional, recommended)
           </h2>
@@ -381,7 +422,7 @@ export default function Beginner5kPlanPage() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section id="whats-next" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             After the 5K: what&apos;s next
           </h2>
@@ -412,7 +453,7 @@ export default function Beginner5kPlanPage() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section id="faq" className="mt-10 scroll-mt-24">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             Frequently asked questions
           </h2>

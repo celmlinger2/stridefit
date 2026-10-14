@@ -1,42 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import GuideCard from "@/components/GuideCard";
+import { GUIDES } from "@/lib/guides";
 
-const guides = [
-  {
-    href: "/beginners-guide-to-running-walking",
-    category: "Running",
-    title: "Beginner's Guide to Running & Walking",
-    copy: "Start with the walk-run method: alternate short runs with walking, build gradually, and stay injury-free.",
-  },
-  {
-    href: "/beginner-5k-training-plan",
-    category: "Training",
-    title: "8-Week Beginner 5K Training Plan",
-    copy: "Three walk-run sessions a week, from your first intervals to race day — with pacing and a taper week.",
-  },
-  {
-    href: "/how-to-track-macros",
-    category: "Nutrition",
-    title: "How to Track Macros",
-    copy: "Set protein, carb, and fat targets and log food without it taking over your life. Includes a full sample day.",
-  },
-  {
-    href: "/calories-to-lose-weight",
-    category: "Nutrition",
-    title: "How Many Calories Should I Eat to Lose Weight?",
-    copy: "Find your real calorie target: estimate maintenance, pick a 300–500 deficit, and adjust from the trend.",
-  },
-];
-
-const filters = ["All", ...Array.from(new Set(guides.map((g) => g.category)))];
+const filters = ["All", ...Array.from(new Set(GUIDES.map((g) => g.category)))];
 
 export default function GuidesPage() {
   const [active, setActive] = useState("All");
-  const shown = active === "All" ? guides : guides.filter((g) => g.category === active);
+  const shown = active === "All" ? GUIDES : GUIDES.filter((g) => g.category === active);
   const count = (c: string) =>
-    c === "All" ? guides.length : guides.filter((g) => g.category === c).length;
+    c === "All" ? GUIDES.length : GUIDES.filter((g) => g.category === c).length;
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -72,20 +46,7 @@ export default function GuidesPage() {
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {shown.map((g) => (
-          <Link
-            key={g.href}
-            href={g.href}
-            className="card group block transition hover:border-brand-500/40"
-          >
-            <p className="eyebrow">{g.category}</p>
-            <h2 className="mt-2 font-display text-3xl uppercase leading-none tracking-wide text-ink group-hover:text-brand-600">
-              {g.title}
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{g.copy}</p>
-            <p className="mt-4 text-sm font-bold text-brand-600">
-              Read the guide <span aria-hidden="true">→</span>
-            </p>
-          </Link>
+          <GuideCard key={g.href} guide={g} />
         ))}
       </div>
 

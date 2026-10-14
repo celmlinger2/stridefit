@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 
 const links = [
+  { href: "/guides", label: "Guides" },
   { href: "/calculators/tdee", label: "TDEE Calculator" },
   { href: "/calculators/macros", label: "Macro Calculator" },
   { href: "/calculators/pace", label: "Pace Calculator" },

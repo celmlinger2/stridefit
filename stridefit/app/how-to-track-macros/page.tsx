@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ArticleByline from "@/components/ArticleByline";
 
 export const metadata: Metadata = {
   title: "How to Track Macros: A Beginner's Guide That Actually Works",
@@ -97,6 +98,7 @@ export default function HowToTrackMacrosPage() {
         <h1 className="mt-2 font-display text-5xl uppercase leading-[0.95] tracking-wide text-ink sm:text-6xl">
           How to Track Macros: A Beginner&apos;s Guide That Actually Works
         </h1>
+        <ArticleByline published="Oct 12, 2026" readMinutes={9} />
         <p className="mt-4 text-lg leading-relaxed text-muted">
           Counting calories tells you <em>how much</em> you&apos;re eating.
           Tracking macros tells you <em>what</em> you&apos;re eating — and that
