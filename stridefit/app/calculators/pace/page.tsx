@@ -7,7 +7,7 @@ import PaceCalculator from "@/components/calculators/PaceCalculator";
 export const metadata: Metadata = {
   title: "Pace Calculator — Running Pace & Race Time Predictor",
   description:
-    "Free running pace calculator: convert race times to training paces per km or mile, or predict your finish time from a target pace.",
+    "Free running pace calculator: convert race times to pace per km or mile, see kilometer-by-kilometer splits, and predict finish times for 5K, 10K, half marathon, and marathon.",
 };
 
 export default function PacePage() {
@@ -22,7 +22,9 @@ export default function PacePage() {
           Whether you&apos;re training for your first 5K or chasing a marathon
           PR, pace is the language of running. Enter a recent race time to see
           your pace per kilometer and per mile — or flip it around and predict
-          a finish time from the pace you want to hold.
+          a finish time from the pace you want to hold. Either way you&apos;ll
+          get your kilometer-by-kilometer splits and predicted finish times for
+          every standard race distance.
         </p>
 
         <div className="mt-8">

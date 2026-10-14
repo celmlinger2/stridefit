@@ -4,6 +4,13 @@ import { useMemo, useState } from "react";
 
 type Mode = "pace" | "time";
 
+const RACES = [
+  { label: "5K", km: 5 },
+  { label: "10K", km: 10 },
+  { label: "Half marathon", km: 21.0975 },
+  { label: "Marathon", km: 42.195 },
+];
+
 function parseHMS(h: string, m: string, s: string): number | null {
   const hh = parseInt(h || "0", 10);
   const mm = parseInt(m || "0", 10);
@@ -38,26 +45,56 @@ export default function PaceCalculator() {
   // time mode: target pace
   const [paceM, setPaceM] = useState("5");
   const [paceS, setPaceS] = useState("30");
+  const [copied, setCopied] = useState(false);
 
-  const paceResult = useMemo(() => {
-    if (mode !== "pace") return null;
+  // One per-km pace value whichever mode is active — splits and
+  // predictions are derived from it.
+  const perKm = useMemo(() => {
     const km = parseFloat(distance);
-    const total = parseHMS(h, m, s);
-    if (!km || km <= 0 || total === null) return null;
-    const perKm = total / km;
-    return { perKm, perMile: perKm * 1.60934 };
-  }, [mode, distance, h, m, s]);
-
-  const timeResult = useMemo(() => {
-    if (mode !== "time") return null;
-    const km = parseFloat(distance);
+    if (!km || km <= 0) return null;
+    if (mode === "pace") {
+      const total = parseHMS(h, m, s);
+      return total === null ? null : total / km;
+    }
     const pm = parseInt(paceM || "0", 10);
     const ps = parseInt(paceS || "0", 10);
-    if (!km || km <= 0 || Number.isNaN(pm) || Number.isNaN(ps)) return null;
-    const perKm = pm * 60 + ps;
-    if (perKm <= 0) return null;
-    return { total: perKm * km };
-  }, [mode, distance, paceM, paceS]);
+    if (Number.isNaN(pm) || Number.isNaN(ps)) return null;
+    const p = pm * 60 + ps;
+    return p > 0 ? p : null;
+  }, [mode, distance, h, m, s, paceM, paceS]);
+
+  const kmDistance = parseFloat(distance) || 0;
+
+  const splits = useMemo(() => {
+    if (perKm === null || kmDistance <= 0 || kmDistance > 100) return [];
+    const wholeKm = Math.floor(kmDistance);
+    const rows: { label: string; time: number }[] = [];
+    for (let k = 1; k <= wholeKm; k++) {
+      rows.push({ label: `Km ${k}`, time: perKm * k });
+    }
+    if (kmDistance > wholeKm) {
+      rows.push({ label: `Finish (${kmDistance} km)`, time: perKm * kmDistance });
+    }
+    return rows;
+  }, [perKm, kmDistance]);
+
+  const predictions = useMemo(() => {
+    if (perKm === null) return [];
+    return RACES.map((r) => ({ label: r.label, time: perKm * r.km }));
+  }, [perKm]);
+
+  function copyResults() {
+    if (perKm === null) return;
+    const text =
+      `My Stride pace: ${formatPace(perKm, false)}/km (${formatPace(perKm, true)}/mile)\n` +
+      `Predicted finish times: ` +
+      predictions.map((p) => `${p.label} ${formatDuration(p.time)}`).join(" · ") +
+      `\nstridefitapp.com/calculators/pace`;
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
 
   return (
     <div className="card">
@@ -136,22 +173,59 @@ export default function PaceCalculator() {
         </div>
       )}
 
-      {(paceResult || timeResult) && (
-        <div className="mt-6 rounded-2xl bg-brand-50 p-5 text-center">
-          {paceResult && (
-            <>
-              <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Your pace</p>
-              <p className="mt-2 text-4xl font-black text-ink">{formatPace(paceResult.perKm, false)}<span className="text-base font-medium text-muted"> /km</span></p>
-              <p className="mt-1 text-lg font-bold text-muted">{formatPace(paceResult.perKm, true)}<span className="text-sm font-medium text-muted"> /mile</span></p>
-            </>
+      {perKm !== null && (
+        <>
+          <div className="mt-6 rounded-2xl bg-brand-50 p-5 text-center">
+            {mode === "pace" ? (
+              <>
+                <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Your pace</p>
+                <p className="mt-2 text-4xl font-black text-ink">{formatPace(perKm, false)}<span className="text-base font-medium text-muted"> /km</span></p>
+                <p className="mt-1 text-lg font-bold text-muted">{formatPace(perKm, true)}<span className="text-sm font-medium text-muted"> /mile</span></p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Predicted finish time</p>
+                <p className="mt-2 text-4xl font-black text-ink">{formatDuration(perKm * kmDistance)}</p>
+                <p className="mt-1 text-lg font-bold text-muted">for {kmDistance} km at {formatPace(perKm, false)}/km</p>
+              </>
+            )}
+            <button
+              onClick={copyResults}
+              className="mt-4 rounded-full bg-navy-900 px-5 py-2 text-sm font-semibold text-white hover:bg-navy-800"
+            >
+              {copied ? "Copied ✓" : "Copy my results"}
+            </button>
+          </div>
+
+          <div className="mt-6">
+            <h3 className="font-bold text-ink">Predicted finish times at this pace</h3>
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {predictions.map((p) => (
+                <div key={p.label} className="rounded-2xl bg-sand p-3 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">{p.label}</p>
+                  <p className="mt-1 text-lg font-black text-ink">{formatDuration(p.time)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {splits.length > 1 && (
+            <div className="mt-6">
+              <h3 className="font-bold text-ink">Your splits — every kilometer</h3>
+              <p className="mt-1 text-sm text-muted">
+                The clock time you should hit at each kilometer marker to stay on pace.
+              </p>
+              <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5">
+                {splits.map((sp) => (
+                  <div key={sp.label} className="rounded-xl border border-line px-2 py-2 text-center">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">{sp.label}</p>
+                    <p className="text-sm font-bold text-ink">{formatDuration(sp.time)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
-          {timeResult && (
-            <>
-              <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">Predicted finish time</p>
-              <p className="mt-2 text-4xl font-black text-ink">{formatDuration(timeResult.total)}</p>
-            </>
-          )}
-        </div>
+        </>
       )}
     </div>
   );
