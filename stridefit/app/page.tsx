@@ -65,6 +65,11 @@ const guides = [
     title: "How to Track Macros",
     copy: "Set protein, carb, and fat targets and log food without it taking over your life.",
   },
+  {
+    href: "/calories-to-lose-weight",
+    title: "How Many Calories Should I Eat to Lose Weight?",
+    copy: "Find your real calorie target: estimate maintenance, pick a deficit, adjust from the trend.",
+  },
 ];
 
 export default function HomePage() {
