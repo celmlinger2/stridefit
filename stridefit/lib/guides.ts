@@ -45,4 +45,13 @@ export const GUIDES: Guide[] = [
     published: "Oct 14, 2026",
     readMinutes: 5,
   },
+  {
+    href: "/strength-training-for-beginners",
+    category: "Training",
+    title: "Strength Training for Beginners: A Simple 4-Week Plan",
+    copy: "Three full-body workouts a week, a handful of basic moves, and a simple 4-week progression.",
+    image: "/guides/strength.webp",
+    published: "Oct 14, 2026",
+    readMinutes: 6,
+  },
 ];
