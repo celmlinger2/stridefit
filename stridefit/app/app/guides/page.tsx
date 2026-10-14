@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 const guides = [
@@ -27,7 +30,14 @@ const guides = [
   },
 ];
 
+const filters = ["All", ...Array.from(new Set(guides.map((g) => g.category)))];
+
 export default function GuidesPage() {
+  const [active, setActive] = useState("All");
+  const shown = active === "All" ? guides : guides.filter((g) => g.category === active);
+  const count = (c: string) =>
+    c === "All" ? guides.length : guides.filter((g) => g.category === c).length;
+
   return (
     <div className="mx-auto max-w-3xl">
       <p className="eyebrow">Learn the fundamentals</p>
@@ -39,8 +49,29 @@ export default function GuidesPage() {
         plans, and nutrition.
       </p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {guides.map((g) => (
+      {/* Topic filter */}
+      <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label="Filter guides by topic">
+        {filters.map((f) => {
+          const isActive = f === active;
+          return (
+            <button
+              key={f}
+              onClick={() => setActive(f)}
+              aria-pressed={isActive}
+              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+                isActive
+                  ? "border-navy-800 bg-navy-800 text-white"
+                  : "border-ink/15 bg-white text-ink hover:border-brand-500/50 hover:text-brand-600"
+              }`}
+            >
+              {f} ({count(f)})
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        {shown.map((g) => (
           <Link
             key={g.href}
             href={g.href}
@@ -57,6 +88,10 @@ export default function GuidesPage() {
           </Link>
         ))}
       </div>
+
+      {shown.length === 0 && (
+        <p className="mt-6 text-muted">No guides in this topic yet — check back soon.</p>
+      )}
     </div>
   );
 }
