@@ -23,6 +23,19 @@ export default function MacroCalculator() {
   const [weight, setWeight] = useState("70");
   const [style, setStyle] = useState<Style>("balanced");
 
+  // Convert the entered weight when switching units so the same person
+  // gets the same result in either system.
+  function switchUnits() {
+    const next = units === "metric" ? "imperial" : "metric";
+    const w = parseFloat(weight);
+    if (!isNaN(w)) {
+      setWeight(
+        String(Math.round(next === "imperial" ? w / 0.453592 : w * 0.453592))
+      );
+    }
+    setUnits(next);
+  }
+
   const result = useMemo(() => {
     const cals = parseFloat(calories);
     let w = parseFloat(weight);
@@ -51,7 +64,7 @@ export default function MacroCalculator() {
           <div className="flex gap-2">
             <input type="number" min={1} value={weight} onChange={(e) => setWeight(e.target.value)} className="field" />
             <button
-              onClick={() => setUnits(units === "metric" ? "imperial" : "metric")}
+              onClick={() => switchUnits()}
               className="btn-secondary whitespace-nowrap px-3"
               title="Toggle units"
             >

@@ -21,6 +21,22 @@ export default function TdeeCalculator() {
   const [weight, setWeight] = useState("65"); // kg or lb
   const [activity, setActivity] = useState(1.55);
 
+  // Convert the entered values when switching units so the same person
+  // gets the same result in either system.
+  function switchUnits(next: Units) {
+    if (next === units) return;
+    const h = parseFloat(height);
+    const w = parseFloat(weight);
+    if (next === "imperial") {
+      if (!isNaN(h)) setHeight(String(Math.round(h / 2.54)));
+      if (!isNaN(w)) setWeight(String(Math.round(w / 0.453592)));
+    } else {
+      if (!isNaN(h)) setHeight(String(Math.round(h * 2.54)));
+      if (!isNaN(w)) setWeight(String(Math.round(w * 0.453592)));
+    }
+    setUnits(next);
+  }
+
   const result = useMemo(() => {
     const a = parseFloat(age);
     let h = parseFloat(height);
@@ -51,7 +67,7 @@ export default function TdeeCalculator() {
         {(["metric", "imperial"] as Units[]).map((u) => (
           <button
             key={u}
-            onClick={() => setUnits(u)}
+            onClick={() => switchUnits(u)}
             className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
               units === u
                 ? "bg-brand-600 text-white"
@@ -93,7 +109,7 @@ export default function TdeeCalculator() {
         </div>
       </div>
 
-      {result && (
+      {result ? (
         <div className="mt-6 rounded-2xl bg-brand-50 p-5">
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">
             Your results
@@ -114,6 +130,10 @@ export default function TdeeCalculator() {
             <p><strong>Gain muscle:</strong> ~{result.bulk.toLocaleString()} kcal/day</p>
           </div>
         </div>
+      ) : (
+        <p className="mt-6 rounded-2xl bg-sand p-4 text-sm text-muted">
+          Enter an age, height, and weight above 0 to see your results.
+        </p>
       )}
     </div>
   );
