@@ -96,12 +96,21 @@ export default function SignupPage() {
           <p className="mt-2 text-sm text-muted">
             Track nutrition, workouts, and cardio — free forever.
           </p>
+          <ul className="mt-4 space-y-1.5 text-sm text-ink">
+            <li>✓ <strong>Free nutrition tracking</strong> — meals, calories &amp; macros</li>
+            <li>✓ <strong>Workouts</strong> — 150+ exercise library, guided routines</li>
+            <li>✓ <strong>Cardio logging</strong> — runs, walks &amp; GPX/TCX imports</li>
+            <li>✓ <strong>Streaks &amp; weekly tips</strong> to keep you consistent</li>
+          </ul>
+          <p className="mt-3 text-xs font-semibold text-muted">
+            No card required · Verify your email · Start in 2 minutes
+          </p>
 
           {error && <p className="error-text mt-4">{error}</p>}
 
           <form onSubmit={handleSignup} className="mt-6 space-y-4">
             <div>
-              <label className="label" htmlFor="displayName">Display name</label>
+              <label className="label" htmlFor="displayName">Display name <span className="font-normal text-muted">(only you see this)</span></label>
               <input id="displayName" type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} className="field" placeholder="Alex" />
             </div>
             <div>
@@ -111,6 +120,7 @@ export default function SignupPage() {
             <div>
               <label className="label" htmlFor="password">Password</label>
               <input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} className="field" placeholder="At least 8 characters" />
+              <p className="mt-1 text-xs text-muted">Use 8 or more characters.</p>
             </div>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-sand p-4 text-sm">
@@ -126,6 +136,10 @@ export default function SignupPage() {
                 service, as described in the{" "}
                 <Link href="/privacy" className="font-semibold text-brand-700 hover:underline">
                   Privacy Policy
+                </Link>{" "}
+                and{" "}
+                <Link href="/terms" className="font-semibold text-brand-700 hover:underline">
+                  Terms of Service
                 </Link>
                 . I can export or delete my data at any time.
               </span>

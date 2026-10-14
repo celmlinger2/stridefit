@@ -15,22 +15,22 @@ const pillars = [
     title: "Nutrition",
     emoji: "🥗",
     copy: "Log meals in seconds with calories and macros. Simple targets for beginners, detailed splits for athletes.",
-    href: "/signup",
-    cta: "Track your diet",
+    href: "/how-to-track-macros",
+    cta: "See how tracking works",
   },
   {
     title: "Workouts",
     emoji: "🏋️",
     copy: "Follow guided routines or build your own. Progressive overload tracking grows with you from day one to advanced.",
-    href: "/signup",
-    cta: "Build workouts",
+    href: "/beginner-5k-training-plan",
+    cta: "See a sample plan",
   },
   {
     title: "Cardio & Events",
     emoji: "🏃",
     copy: "Log runs, walks, and cardio sessions — or import GPX/TCX files from Strava and Garmin. Train for races and challenges.",
-    href: "/signup",
-    cta: "Log cardio",
+    href: "/beginners-guide-to-running-walking",
+    cta: "Read the running guide",
   },
 ];
 
@@ -104,6 +104,64 @@ export default function HomePage() {
             <span>🏋️ Workouts</span>
             <span>🏃 Cardio events</span>
             <span>💚 Wellness tips</span>
+          </div>
+
+          {/* App preview — sample data, built in code */}
+          <div className="mx-auto mt-12 max-w-3xl text-left">
+            <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-xl">
+              <div className="flex items-center justify-between bg-navy-800 px-5 py-3">
+                <span className="font-display text-lg tracking-wide text-white">
+                  STRIDE<span className="text-brand-500">.</span>
+                </span>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-cream">
+                  App preview
+                </span>
+              </div>
+              <div className="grid gap-4 p-5 sm:grid-cols-5">
+                <div className="sm:col-span-3">
+                  <p className="eyebrow !text-[11px]">Calories today</p>
+                  <p className="mt-1 font-display text-4xl tracking-wide text-ink">
+                    1,240 <span className="text-lg text-muted">/ 2,000 kcal</span>
+                  </p>
+                  <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-sand">
+                    <div className="h-full w-[62%] rounded-full bg-brand-500" />
+                  </div>
+                  <p className="mt-2 text-xs text-muted">62% of daily target</p>
+                  <div className="mt-5">
+                    <p className="eyebrow !text-[11px]">This week</p>
+                    <div className="mt-2 flex h-16 items-end gap-2">
+                      {[35, 60, 25, 80, 45, 90, 50].map((h, i) => (
+                        <div
+                          key={i}
+                          className={`flex-1 rounded-t-md ${i === 5 ? "bg-brand-500" : "bg-navy-800"}`}
+                          style={{ height: `${h}%` }}
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-1 flex justify-between font-mono text-[10px] text-muted">
+                      <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl bg-cream p-4 sm:col-span-2">
+                  <p className="eyebrow !text-[11px]">Workout of the day</p>
+                  <p className="mt-2 font-display text-2xl uppercase leading-none tracking-wide text-ink">
+                    Full-body reset
+                  </p>
+                  <ul className="mt-3 space-y-1.5 text-sm text-muted">
+                    <li>Push-ups × 12</li>
+                    <li>Squats × 15</li>
+                    <li>Plank · 45 sec</li>
+                  </ul>
+                  <span className="mt-4 inline-block rounded-full bg-brand-500 px-4 py-2 text-xs font-bold text-white">
+                    Start workout
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-center text-xs text-muted">
+              Your dashboard — log a meal, a workout, or a walk in seconds.
+            </p>
           </div>
         </div>
       </section>
