@@ -6,6 +6,7 @@ import type { Difficulty, LoggedExercise, WorkoutLog, WorkoutTemplate } from "@/
 import { EXERCISES, type Exercise } from "@/lib/workout-of-the-day";
 import { exerciseSlug } from "@/lib/exercise-videos";
 import ExerciseMediaModal from "@/components/ExerciseMedia";
+import ExercisePicker, { libraryMatch } from "@/components/ExercisePicker";
 
 const EXERCISE_BY_SLUG = new Map(EXERCISES.map((e) => [exerciseSlug(e.name), e]));
 
@@ -68,14 +69,29 @@ export default function WorkoutsPage() {
 
   function addSet(ei: number) {
     const next = [...exercises];
-    next[ei].sets.push({ reps: 8, weight_kg: null });
+    const sets = next[ei].sets;
+    const lastReps = sets.length ? sets[sets.length - 1].reps : 8;
+    next[ei].sets = [...sets, { reps: lastReps, weight_kg: null }];
     setExercises(next);
   }
 
-  function updateExercise(ei: number, patch: Partial<LoggedExercise>) {
+  function selectExercise(ei: number, ex: Exercise) {
     const next = [...exercises];
-    next[ei] = { ...next[ei], ...patch };
+    next[ei] = {
+      name: ex.name,
+      sets: Array.from({ length: ex.sets }, () => ({ reps: ex.reps, weight_kg: null })),
+    };
     setExercises(next);
+  }
+
+  function clearExercise(ei: number) {
+    const next = [...exercises];
+    next[ei] = { name: "", sets: [{ reps: 8, weight_kg: null }] };
+    setExercises(next);
+  }
+
+  function removeExercise(ei: number) {
+    setExercises(exercises.filter((_, i) => i !== ei));
   }
 
   function updateSet(ei: number, si: number, patch: { reps?: number; weight_kg?: number | null }) {
@@ -90,7 +106,13 @@ export default function WorkoutsPage() {
     setError(null);
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
-    const clean = exercises.filter((x) => x.name.trim() !== "");
+    const named = exercises.filter((x) => x.name.trim() !== "");
+    if (named.some((x) => !libraryMatch(x.name))) {
+      setSaving(false);
+      setError("Every exercise needs to be picked from the library — tap a suggestion so it locks in with its form video.");
+      return;
+    }
+    const clean = named;
     const { error } = await supabase.from("workout_logs").insert({
       user_id: user.id,
       template_id: activeTemplate?.id ?? null,
@@ -142,17 +164,31 @@ export default function WorkoutsPage() {
         <h1 className="font-display text-5xl uppercase tracking-wide text-ink">
           {activeTemplate ? activeTemplate.name : "Freestyle workout"}
         </h1>
-        <p className="mt-1 text-muted">Add exercises and sets as you go.</p>
+        <p className="mt-1 text-muted">Pick exercises from the Stride library — each one comes with its form video and standard sets. Add sets as you go.</p>
         {error && <p className="error-text mt-4">{error}</p>}
         <form onSubmit={finishWorkout} className="mt-6 space-y-4">
           {exercises.map((ex, ei) => (
             <div key={ei} className="card">
-              <input
-                value={ex.name}
-                onChange={(e) => updateExercise(ei, { name: e.target.value })}
-                className="field font-semibold"
-                placeholder={`Exercise ${ei + 1} — e.g. Squat`}
-              />
+              <div className="flex items-start gap-2">
+                <div className="min-w-0 flex-1">
+                  <ExercisePicker
+                    index={ei}
+                    value={ex.name}
+                    onSelect={(picked) => selectExercise(ei, picked)}
+                    onClear={() => clearExercise(ei)}
+                  />
+                </div>
+                {exercises.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeExercise(ei)}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sand text-base font-bold text-muted hover:bg-line hover:text-ink"
+                    aria-label={`Remove exercise ${ei + 1}`}
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
               {(() => {
                 const match = EXERCISE_BY_SLUG.get(exerciseSlug(ex.name));
                 return match ? (
