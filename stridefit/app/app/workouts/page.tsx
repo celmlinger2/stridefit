@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Difficulty, LoggedExercise, WorkoutLog, WorkoutTemplate } from "@/lib/database.types";
+import { EXERCISES, type Exercise } from "@/lib/workout-of-the-day";
+import { exerciseSlug } from "@/lib/exercise-videos";
+import ExerciseMediaModal from "@/components/ExerciseMedia";
+
+const EXERCISE_BY_SLUG = new Map(EXERCISES.map((e) => [exerciseSlug(e.name), e]));
 
 type View = "home" | "new-template" | "log-workout";
 
@@ -26,6 +31,7 @@ export default function WorkoutsPage() {
   const [exercises, setExercises] = useState<LoggedExercise[]>([{ name: "", sets: [{ reps: 8, weight_kg: null }] }]);
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
+  const [watching, setWatching] = useState<Exercise | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -147,6 +153,21 @@ export default function WorkoutsPage() {
                 className="field font-semibold"
                 placeholder={`Exercise ${ei + 1} — e.g. Squat`}
               />
+              {(() => {
+                const match = EXERCISE_BY_SLUG.get(exerciseSlug(ex.name));
+                return match ? (
+                  <button
+                    type="button"
+                    onClick={() => setWatching(match)}
+                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:underline"
+                  >
+                    <svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor" aria-hidden="true">
+                      <path d="M0 0 L10 6 L0 12 Z" />
+                    </svg>
+                    Watch form video — {match.name}
+                  </button>
+                ) : null;
+              })()}
               <div className="mt-3 space-y-2">
                 {ex.sets.map((set, si) => (
                   <div key={si} className="flex items-center gap-2">
@@ -184,6 +205,13 @@ export default function WorkoutsPage() {
             </button>
           </div>
         </form>
+        {watching && (
+          <ExerciseMediaModal
+            name={watching.name}
+            instructions={watching.instructions}
+            onClose={() => setWatching(null)}
+          />
+        )}
       </div>
     );
   }

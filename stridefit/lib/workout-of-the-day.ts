@@ -38,7 +38,7 @@ export interface Exercise {
   warmup?: boolean;
 }
 
-const EXERCISES: Exercise[] = [
+export const EXERCISES: Exercise[] = [
   // ---- Bodyweight ----
   { name: "Jumping jacks", equipment: ["bodyweight"], focus: "Conditioning", instructions: "Light and bouncy — wake the whole body up.", sets: 1, reps: 45, unit: "seconds", warmup: true },
   { name: "High knees", equipment: ["bodyweight"], focus: "Conditioning", instructions: "Drive knees up, pump arms, stay on the balls of your feet.", sets: 1, reps: 30, unit: "seconds", warmup: true },
