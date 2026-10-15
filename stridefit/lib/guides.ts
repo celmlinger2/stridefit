@@ -54,4 +54,13 @@ export const GUIDES: Guide[] = [
     published: "Oct 14, 2026",
     readMinutes: 6,
   },
+  {
+    href: "/how-to-pace-a-10k",
+    category: "Running",
+    title: "How to Pace a 10K: Start Slower, Finish Faster",
+    copy: "Pick an honest goal time, run mile 1 controlled, settle in the middle, and finish brave — with a pace chart for common goals.",
+    image: "/guides/10k.webp",
+    published: "Oct 15, 2026",
+    readMinutes: 6,
+  },
 ];
