@@ -113,7 +113,7 @@ export const EXERCISES: Exercise[] = [
   { name: "Front raises", equipment: ["dumbbells"], focus: "Push", instructions: "Raise one dumbbell to shoulder height, lower with control.", sets: 3, reps: 12, unit: "reps" },
   { name: "Reverse fly", equipment: ["dumbbells"], focus: "Pull", instructions: "Hinge forward, open your arms wide, squeeze your shoulder blades.", sets: 3, reps: 12, unit: "reps" },
   { name: "Dumbbell calf raises", equipment: ["dumbbells"], focus: "Legs", instructions: "Weights at your sides, rise tall on your toes, lower slow.", sets: 3, reps: 15, unit: "reps" },
-  { name: "Dumbbell farmer's carry", equipment: ["dumbbells"], focus: "Full body", instructions: "Heavy dumbbells at your sides, walk tall without leaning.", sets: 3, reps: 30, unit: "seconds" },
+  { name: "Dumbbell farmer's march", equipment: ["dumbbells"], focus: "Full body", instructions: "Heavy dumbbells at your sides, march in place tall, driving your knees up without leaning.", sets: 3, reps: 30, unit: "seconds" },
   // ---- Barbell ----
   { name: "Back squat", equipment: ["barbell"], focus: "Legs", instructions: "Big breath, brace, sit between your heels and drive up.", sets: 4, reps: 6, unit: "reps" },
   { name: "Deadlift", equipment: ["barbell"], focus: "Pull", instructions: "Hips back, chest up, drag the bar up your shins.", sets: 4, reps: 6, unit: "reps" },
