@@ -7,6 +7,7 @@ import { EXERCISES, type Exercise } from "@/lib/workout-of-the-day";
 import { exerciseSlug } from "@/lib/exercise-videos";
 import ExerciseMediaModal from "@/components/ExerciseMedia";
 import ExercisePicker, { libraryMatch } from "@/components/ExercisePicker";
+import { BUILT_IN_TEMPLATES, type BuiltInTemplate } from "@/lib/workout-templates";
 
 const EXERCISE_BY_SLUG = new Map(EXERCISES.map((e) => [exerciseSlug(e.name), e]));
 
@@ -29,6 +30,7 @@ export default function WorkoutsPage() {
 
   // workout logging
   const [activeTemplate, setActiveTemplate] = useState<WorkoutTemplate | null>(null);
+  const [builtInName, setBuiltInName] = useState<string | null>(null);
   const [exercises, setExercises] = useState<LoggedExercise[]>([{ name: "", sets: [{ reps: 8, weight_kg: null }] }]);
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
@@ -61,6 +63,21 @@ export default function WorkoutsPage() {
     setTName(""); setTDesc(""); setTDiff("beginner");
     setView("home");
     load();
+  }
+
+  function startBuiltIn(t: BuiltInTemplate) {
+    const picked = t.exerciseNames
+      .map((name) => EXERCISE_BY_SLUG.get(exerciseSlug(name)))
+      .filter((ex): ex is Exercise => Boolean(ex))
+      .map((ex) => ({
+        name: ex.name,
+        sets: Array.from({ length: ex.sets }, () => ({ reps: ex.reps, weight_kg: null })),
+      }));
+    setExercises(picked.length ? picked : [{ name: "", sets: [{ reps: 8, weight_kg: null }] }]);
+    setActiveTemplate(null);
+    setBuiltInName(t.name);
+    setError(null);
+    setView("log-workout");
   }
 
   function addExercise() {
@@ -124,6 +141,7 @@ export default function WorkoutsPage() {
     setExercises([{ name: "", sets: [{ reps: 8, weight_kg: null }] }]);
     setNotes("");
     setActiveTemplate(null);
+    setBuiltInName(null);
     setView("home");
     load();
   }
@@ -162,9 +180,13 @@ export default function WorkoutsPage() {
     return (
       <div className="mx-auto max-w-2xl">
         <h1 className="font-display text-5xl uppercase tracking-wide text-ink">
-          {activeTemplate ? activeTemplate.name : "Freestyle workout"}
+          {activeTemplate ? activeTemplate.name : builtInName ?? "Freestyle workout"}
         </h1>
-        <p className="mt-1 text-muted">Pick exercises from the Stride library — each one comes with its form video and standard sets. Add sets as you go.</p>
+        <p className="mt-1 text-muted">
+          {builtInName
+            ? "Loaded from a Stride template — every exercise comes with its form video and standard sets. Adjust anything, then finish to log it."
+            : "Pick exercises from the Stride library — each one comes with its form video and standard sets. Add sets as you go."}
+        </p>
         {error && <p className="error-text mt-4">{error}</p>}
         <form onSubmit={finishWorkout} className="mt-6 space-y-4">
           {exercises.map((ex, ei) => (
@@ -236,7 +258,7 @@ export default function WorkoutsPage() {
             <button type="submit" disabled={saving} className="btn-primary">
               {saving ? "Saving…" : "Finish workout"}
             </button>
-            <button type="button" onClick={() => { setView("home"); setActiveTemplate(null); }} className="btn-secondary">
+            <button type="button" onClick={() => { setView("home"); setActiveTemplate(null); setBuiltInName(null); }} className="btn-secondary">
               Discard
             </button>
           </div>
@@ -262,11 +284,34 @@ export default function WorkoutsPage() {
         </div>
         <div className="flex gap-2">
           <button onClick={() => setView("new-template")} className="btn-secondary">New template</button>
-          <button onClick={() => { setActiveTemplate(null); setView("log-workout"); }} className="btn-primary">Start workout</button>
+          <button onClick={() => { setActiveTemplate(null); setBuiltInName(null); setExercises([{ name: "", sets: [{ reps: 8, weight_kg: null }] }]); setView("log-workout"); }} className="btn-primary">Start workout</button>
         </div>
       </div>
 
       {error && <p className="error-text mt-4">{error}</p>}
+
+      <h2 className="mt-10 font-display text-3xl uppercase tracking-wide text-ink">Quick-start templates</h2>
+      <p className="mt-2 text-sm text-muted">Ready-made Stride workouts — pick one and it loads with every exercise, sets, and form video. No planning needed.</p>
+      <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {BUILT_IN_TEMPLATES.map((t) => (
+          <div key={t.id} className="card">
+            <div className="flex items-center justify-between">
+              <h3 className="font-bold text-ink">{t.name}</h3>
+              <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-bold text-brand-800">{t.difficulty}</span>
+            </div>
+            <p className="mt-2 text-sm text-muted">{t.description}</p>
+            <p className="mt-3 text-xs font-bold uppercase tracking-wide text-muted">
+              {t.exerciseNames.length} exercises · ~{t.minutes} min · {t.equipmentLabel}
+            </p>
+            <button
+              onClick={() => startBuiltIn(t)}
+              className="mt-4 text-sm font-bold text-brand-700 hover:underline"
+            >
+              Start this workout →
+            </button>
+          </div>
+        ))}
+      </div>
 
       <h2 className="mt-10 font-display text-3xl uppercase tracking-wide text-ink">Your templates</h2>
       {loading ? (
@@ -288,7 +333,7 @@ export default function WorkoutsPage() {
               </div>
               {t.description && <p className="mt-2 text-sm text-muted">{t.description}</p>}
               <button
-                onClick={() => { setActiveTemplate(t); setView("log-workout"); }}
+                onClick={() => { setActiveTemplate(t); setBuiltInName(null); setView("log-workout"); }}
                 className="mt-4 text-sm font-bold text-brand-700 hover:underline"
               >
                 Start this workout →
