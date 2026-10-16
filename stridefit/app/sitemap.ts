@@ -6,6 +6,7 @@ import type { MetadataRoute } from "next";
 
 const PUBLIC_PAGES = [
   { route: "", changeFrequency: "daily", priority: 1.0 },
+  { route: "/calculators", changeFrequency: "weekly", priority: 0.8 },
   { route: "/calculators/macros", changeFrequency: "weekly", priority: 0.8 },
   { route: "/calculators/pace", changeFrequency: "weekly", priority: 0.8 },
   { route: "/calculators/tdee", changeFrequency: "weekly", priority: 0.8 },

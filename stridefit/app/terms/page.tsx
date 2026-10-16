@@ -30,7 +30,7 @@ const sections = [
   },
   {
     heading: "Limitation of liability",
-    body: "To the maximum extent permitted by law, Stride is provided 'as is' without warranties, and our liability is limited. [Have an attorney tailor this section to your jurisdiction.]",
+    body: "To the maximum extent permitted by law, Stride is provided 'as is' without warranties, and our liability is limited.",
   },
   {
     heading: "Changes",
@@ -38,7 +38,7 @@ const sections = [
   },
   {
     heading: "Contact",
-    body: "[Contact email and business address to be added before launch.]",
+    body: "Questions about these terms: strideadmin@stridefitapp.com.",
   },
 ];
 
@@ -47,15 +47,10 @@ export default function TermsPage() {
     <div className="min-h-screen bg-cream">
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <p className="rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-900">
-          <strong>Draft for legal review.</strong> This is a starting template —
-          have a qualified attorney review and finalize it before launch,
-          especially the bracketed items.
-        </p>
-        <h1 className="mt-6 text-3xl font-black tracking-tight text-ink">
+        <h1 className="text-3xl font-black tracking-tight text-ink">
           Terms of Service
         </h1>
-        <p className="mt-2 text-sm text-muted">Last updated: [date]</p>
+        <p className="mt-2 text-sm text-muted">Last updated: October 16, 2026</p>
         <div className="mt-8 space-y-8">
           {sections.map((s) => (
             <section key={s.heading}>

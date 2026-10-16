@@ -193,7 +193,7 @@ export default function PaceCalculator() {
               onClick={copyResults}
               className="mt-4 rounded-full bg-navy-900 px-5 py-2 text-sm font-semibold text-white hover:bg-navy-800"
             >
-              {copied ? "Copied ✓" : "Copy my results"}
+              {copied ? "Copied!" : "📋 Copy my results"}
             </button>
           </div>
 

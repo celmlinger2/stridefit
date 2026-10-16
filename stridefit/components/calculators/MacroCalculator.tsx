@@ -132,7 +132,7 @@ export default function MacroCalculator() {
             onClick={copyResults}
             className="mt-4 rounded-full border border-ink/15 bg-white px-4 py-2 text-sm font-bold text-ink transition hover:border-brand-500/50 hover:text-brand-600"
           >
-            {copied ? "Copied!" : "📋 Copy my macros"}
+            {copied ? "Copied!" : "📋 Copy my results"}
           </button>
         </div>
       )}

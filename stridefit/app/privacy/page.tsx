@@ -22,7 +22,7 @@ const sections = [
   },
   {
     heading: "Your rights: export and deletion",
-    body: "You can request a copy of your data or delete your account and all associated data at any time. [Contact method to be added before launch.]",
+    body: "You can export a copy of your data or delete your account and all associated data at any time from Settings in the app, or by contacting us at strideadmin@stridefitapp.com.",
   },
   {
     heading: "Data security",
@@ -30,7 +30,7 @@ const sections = [
   },
   {
     heading: "Third-party services",
-    body: "We use infrastructure providers (hosting, database, authentication, email) to operate Stride. Each processes data only as needed to provide their service. [Provider list to be added before launch.]",
+    body: "We use infrastructure providers to operate Stride: Vercel (website hosting), Supabase (database and account authentication), and Google (only if you choose to sign in with Google). Each processes data only as needed to provide their service.",
   },
   {
     heading: "Children",
@@ -38,7 +38,7 @@ const sections = [
   },
   {
     heading: "Changes to this policy",
-    body: "We will notify users of material changes before they take effect. [Effective date and contact email to be added before launch.]",
+    body: "We will notify users of material changes before they take effect. Questions about this policy: strideadmin@stridefitapp.com.",
   },
 ];
 
@@ -47,15 +47,10 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-cream">
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-        <p className="rounded-2xl bg-amber-50 p-4 text-sm font-medium text-amber-900">
-          <strong>Draft for legal review.</strong> This is a starting template —
-          have a qualified attorney review and finalize it before launch,
-          especially the bracketed items.
-        </p>
-        <h1 className="mt-6 text-3xl font-black tracking-tight text-ink">
+        <h1 className="text-3xl font-black tracking-tight text-ink">
           Privacy Policy
         </h1>
-        <p className="mt-2 text-sm text-muted">Last updated: [date]</p>
+        <p className="mt-2 text-sm text-muted">Last updated: October 16, 2026</p>
         <div className="mt-8 space-y-8">
           {sections.map((s) => (
             <section key={s.heading}>
