@@ -30,6 +30,7 @@ export default function Footer() {
               <Link href="/calories-to-lose-weight" className="text-cream/70 hover:text-white">Calories to lose weight</Link>
               <Link href="/strength-training-for-beginners" className="text-cream/70 hover:text-white">Strength training for beginners</Link>
               <Link href="/how-to-pace-a-10k" className="text-cream/70 hover:text-white">How to pace a 10K</Link>
+              <Link href="/what-to-eat-before-and-after-a-run" className="text-cream/70 hover:text-white">What to eat before &amp; after a run</Link>
             </div>
             <div className="flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Legal</p>

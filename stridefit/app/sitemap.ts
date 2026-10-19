@@ -41,6 +41,11 @@ const PUBLIC_PAGES = [
     priority: 0.7,
   },
   {
+    route: "/what-to-eat-before-and-after-a-run",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     route: "/calories-to-lose-weight",
     changeFrequency: "monthly",
     priority: 0.7,

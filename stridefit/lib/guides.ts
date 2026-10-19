@@ -63,4 +63,13 @@ export const GUIDES: Guide[] = [
     published: "Oct 15, 2026",
     readMinutes: 6,
   },
+  {
+    href: "/what-to-eat-before-and-after-a-run",
+    category: "Nutrition",
+    title: "What to Eat Before and After a Run",
+    copy: "Simple timing rules for pre-run meals and snacks, the foods that cause stomach trouble, and the protein + carbs rule for recovery.",
+    image: "/guides/run-fuel.webp",
+    published: "Oct 19, 2026",
+    readMinutes: 7,
+  },
 ];
