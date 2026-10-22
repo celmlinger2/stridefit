@@ -31,6 +31,7 @@ export default function Footer() {
               <Link href="/strength-training-for-beginners" className="text-cream/70 hover:text-white">Strength training for beginners</Link>
               <Link href="/how-to-pace-a-10k" className="text-cream/70 hover:text-white">How to pace a 10K</Link>
               <Link href="/what-to-eat-before-and-after-a-run" className="text-cream/70 hover:text-white">What to eat before &amp; after a run</Link>
+              <Link href="/walking-for-weight-management" className="text-cream/70 hover:text-white">Walking for weight management</Link>
             </div>
             <div className="flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Legal</p>

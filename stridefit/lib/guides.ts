@@ -72,4 +72,13 @@ export const GUIDES: Guide[] = [
     published: "Oct 19, 2026",
     readMinutes: 7,
   },
+  {
+    href: "/walking-for-weight-management",
+    category: "Walking",
+    title: "Walking for Weight Management: A Realistic Starter Plan",
+    copy: "Find your real starting point, add a little each week, and build the daily-walk habit — a realistic 4-week plan with no weight-loss promises.",
+    image: "/guides/walking.webp",
+    published: "Oct 22, 2026",
+    readMinutes: 8,
+  },
 ];
