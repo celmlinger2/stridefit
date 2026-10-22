@@ -18,6 +18,7 @@ export default function Footer() {
           <div className="flex gap-12 text-sm">
             <div className="flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-400">Tools</p>
+              <Link href="/exercises" className="text-cream/70 hover:text-white">Exercise library</Link>
               <Link href="/calculators/tdee" className="text-cream/70 hover:text-white">TDEE calculator</Link>
               <Link href="/calculators/macros" className="text-cream/70 hover:text-white">Macro calculator</Link>
               <Link href="/calculators/pace" className="text-cream/70 hover:text-white">Pace calculator</Link>

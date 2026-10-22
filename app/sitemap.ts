@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { EXERCISES } from "@/lib/workout-of-the-day";
+import { exerciseSlug } from "@/lib/exercise-videos";
 
 // Public, indexable pages only. Auth-gated /app/* dashboard routes,
 // /login and /signup carry no search value and are excluded (and
@@ -63,10 +65,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://stridefitapp.com";
 
-  return PUBLIC_PAGES.map((page) => ({
+  const staticPages = PUBLIC_PAGES.map((page) => ({
     url: `${siteUrl}${page.route}`,
     lastModified: new Date(),
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
+
+  const exercisePages = [
+    {
+      url: `${siteUrl}/exercises`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...EXERCISES.map((e) => ({
+      url: `${siteUrl}/exercises/${exerciseSlug(e.name)}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [...staticPages, ...exercisePages];
 }
