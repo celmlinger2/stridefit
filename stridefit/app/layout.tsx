@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Plus_Jakarta_Sans, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import RegisterSW from "@/components/RegisterSW";
+import InstallPrompt from "@/components/InstallPrompt";
 import "./globals.css";
 
 const display = Bebas_Neue({
@@ -30,6 +32,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://stridefitapp.com"
   ),
+  appleWebApp: {
+    capable: true,
+    title: "Stride",
+    statusBarStyle: "default",
+  },
 };
 
 export const viewport: Viewport = {
@@ -48,6 +55,8 @@ export default function RootLayout({
     >
       <body className="font-sans">
         {children}
+        <RegisterSW />
+        <InstallPrompt />
         <Analytics />
       </body>
     </html>
