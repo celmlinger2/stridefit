@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import MacroFit from "@/components/MacroFit";
+import VoiceButton from "@/components/VoiceButton";
+import { parseFoodVoice } from "@/lib/voice";
 import type { FoodLog, MealType, Profile } from "@/lib/database.types";
 
 const mealTypes: MealType[] = ["breakfast", "lunch", "dinner", "snack"];
@@ -223,6 +225,19 @@ export default function NutritionPage() {
       {/* Add food */}
       <div className="card mt-6">
         <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Log food</h2>
+        <div className="mt-4">
+          <VoiceButton
+            hint="Try: “grilled chicken breast, 320 calories, 35 protein”"
+            onTranscript={(text) => {
+              const p = parseFoodVoice(text);
+              if (p.name) setFoodName(p.name);
+              if (p.calories != null) setCalories(String(p.calories));
+              if (p.protein != null) setProtein(String(p.protein));
+              if (p.carbs != null) setCarbs(String(p.carbs));
+              if (p.fat != null) setFat(String(p.fat));
+            }}
+          />
+        </div>
         <form onSubmit={addLog} className="mt-4 grid gap-4 sm:grid-cols-2">
           <div>
             <label className="label">Meal</label>

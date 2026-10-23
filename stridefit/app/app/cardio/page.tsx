@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { parseActivityFile, type ParsedActivity } from "@/lib/gpx";
+import VoiceButton from "@/components/VoiceButton";
+import { parseCardioVoice } from "@/lib/voice";
 import type { ActivityType, CardioLog, EventType, FitnessEvent } from "@/lib/database.types";
 
 const activityTypes: ActivityType[] = ["run", "walk", "cycle", "swim", "row", "elliptical", "other"];
@@ -142,6 +144,17 @@ export default function CardioPage() {
         {/* Manual log */}
         <div className="card">
           <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Log activity</h2>
+          <div className="mt-4">
+            <VoiceButton
+              hint="Try: “ran 3 miles in 28 minutes”"
+              onTranscript={(text) => {
+                const p = parseCardioVoice(text);
+                if (p.activity) setActivityType(p.activity as ActivityType);
+                if (p.distanceKm != null) setDistance(String(p.distanceKm));
+                if (p.durationMin != null) setDuration(String(p.durationMin));
+              }}
+            />
+          </div>
           <form onSubmit={handleManualLog} className="mt-4 space-y-4">
             <div>
               <label className="label">Activity</label>
