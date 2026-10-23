@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import MacroFit from "@/components/MacroFit";
 import type { FoodLog, MealType, Profile } from "@/lib/database.types";
 
 const mealTypes: MealType[] = ["breakfast", "lunch", "dinner", "snack"];
@@ -216,6 +217,8 @@ export default function NutritionPage() {
           </form>
         </details>
       </div>
+
+      <MacroFit totals={totals} profile={profile} onLogged={load} />
 
       {/* Add food */}
       <div className="card mt-6">
