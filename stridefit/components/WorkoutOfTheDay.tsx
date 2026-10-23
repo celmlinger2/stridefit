@@ -11,6 +11,7 @@ import {
 } from "@/lib/workout-of-the-day";
 import ExerciseMediaModal, { WatchButton } from "@/components/ExerciseMedia";
 import { createClient } from "@/lib/supabase/client";
+import { readinessFromScores, type CheckinScores } from "@/lib/readiness";
 
 const STORAGE_KEY = "stride-equipment";
 const progressKey = (dateStr: string) => `stride-wod-progress-${dateStr}`;
@@ -65,6 +66,8 @@ function ExerciseRow({
   section,
   done,
   onToggleSet,
+  badge,
+  hint,
 }: {
   ex: Exercise;
   index?: number;
@@ -73,6 +76,8 @@ function ExerciseRow({
   section?: SectionKey;
   done?: Set<string>;
   onToggleSet?: (key: string) => void;
+  badge?: string;
+  hint?: string;
 }) {
   const allDone =
     session && done && section
@@ -100,6 +105,12 @@ function ExerciseRow({
           )}
         </div>
         <p className="mt-0.5 text-sm text-muted">{ex.instructions}</p>
+        {badge && (
+          <span className="mt-1.5 inline-block rounded-full bg-brand-100 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-brand-800">
+            {badge}
+          </span>
+        )}
+        {hint && <p className="mt-1 text-xs font-semibold text-navy-800">{hint}</p>}
         {session && section && done && onToggleSet && (
           <SetBubbles ex={ex} section={section} done={done} onToggle={onToggleSet} />
         )}
@@ -124,6 +135,13 @@ export default function WorkoutOfTheDay() {
   const [saving, setSaving] = useState(false);
   const [logged, setLogged] = useState(false);
   const [logError, setLogError] = useState<string | null>(null);
+  const [history, setHistory] = useState<
+    {
+      performed_at: string;
+      exercises: { name: string; sets: { reps: number; weight_kg: number | null }[] }[];
+    }[]
+  >([]);
+  const [checkin, setCheckin] = useState<CheckinScores | null>(null);
 
   // Load saved equipment; watch for midnight rollover.
   useEffect(() => {
@@ -159,6 +177,59 @@ export default function WorkoutOfTheDay() {
     setSession(false);
   }, [dateStr]);
 
+  // Personalization data: recent workout history (for level-ups) and
+  // today's check-in (for readiness scaling). Silent when logged out.
+  useEffect(() => {
+    let cancelled = false;
+    const supabase = createClient();
+    async function loadPersonal() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user || cancelled) return;
+      const [{ data: logs }, { data: ci }] = await Promise.all([
+        supabase
+          .from("workout_logs")
+          .select("performed_at, exercises")
+          .eq("user_id", user.id)
+          .order("performed_at", { ascending: false })
+          .limit(40),
+        supabase
+          .from("daily_checkins")
+          .select("sleep_score, energy_score, soreness_score")
+          .eq("user_id", user.id)
+          .eq("checkin_date", todayKey())
+          .maybeSingle(),
+      ]);
+      if (cancelled) return;
+      if (logs) {
+        setHistory(
+          logs.map((l) => ({
+            performed_at: l.performed_at as string,
+            exercises: (l.exercises ?? []) as {
+              name: string;
+              sets: { reps: number; weight_kg: number | null }[];
+            }[],
+          }))
+        );
+      }
+      if (ci) {
+        setCheckin({
+          sleep: ci.sleep_score,
+          energy: ci.energy_score,
+          soreness: ci.soreness_score,
+        });
+      }
+    }
+    loadPersonal();
+    const onCheckin = () => loadPersonal();
+    window.addEventListener("stride:checkin", onCheckin);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("stride:checkin", onCheckin);
+    };
+  }, [dateStr]);
+
   function toggle(key: EquipmentKey) {
     setEquipment((prev) => {
       const next = prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key];
@@ -187,11 +258,84 @@ export default function WorkoutOfTheDay() {
 
   const workout = useMemo(() => getWorkoutOfDay(dateStr, equipment), [dateStr, equipment]);
 
+  // Adaptive layer: level-ups from history + readiness scaling from the
+  // morning check-in. Falls back to the base workout when there's no data.
+  const { adaptedWorkout, adaptMeta, readiness } = useMemo(() => {
+    const meta = new Map<string, { badge?: string; hint?: string }>();
+    const readiness = checkin ? readinessFromScores(checkin) : null;
+
+    const lastByName = new Map<
+      string,
+      { date: string; sets: { reps: number; weight_kg: number | null }[] }
+    >();
+    for (const log of history) {
+      for (const e of log.exercises ?? []) {
+        if (!lastByName.has(e.name)) {
+          lastByName.set(e.name, { date: log.performed_at, sets: e.sets ?? [] });
+        }
+      }
+    }
+
+    const adaptMain = (ex: Exercise): Exercise => {
+      let out = ex;
+      const last = lastByName.get(ex.name);
+      if (last) {
+        const lastSets = last.sets.length;
+        const lastReps = last.sets[0]?.reps ?? ex.reps;
+        const when = new Date(last.date).toLocaleDateString(undefined, {
+          month: "short",
+          day: "numeric",
+        });
+        const maxW = Math.max(0, ...last.sets.map((x) => x.weight_kg ?? 0));
+        if (lastSets >= ex.sets) {
+          out = {
+            ...ex,
+            reps: ex.unit === "seconds" ? ex.reps + 10 : ex.reps + 2,
+          };
+          meta.set(ex.name, {
+            badge: "Level up ↑",
+            hint: `You finished ${lastSets}×${lastReps} on ${when}${
+              maxW > 0 ? ` · top set ${maxW} kg — nudge it up a little` : ""
+            }. We added a bit more today.`,
+          });
+        } else {
+          meta.set(ex.name, {
+            badge: "Finish it today",
+            hint: `Last time (${when}) you got ${lastSets} of ${ex.sets} sets. Today's goal: all of them.`,
+          });
+        }
+      } else if (history.length > 0) {
+        meta.set(ex.name, { badge: "New for you" });
+      }
+      if (readiness?.level === "low") {
+        out = { ...out, sets: Math.max(1, out.sets - 1) };
+      }
+      return out;
+    };
+
+    const main = workout.main.map(adaptMain);
+    const finisher =
+      readiness?.level === "high"
+        ? { ...workout.finisher, sets: workout.finisher.sets + 1 }
+        : workout.finisher;
+    if (readiness?.level === "high") {
+      meta.set(workout.finisher.name, {
+        badge: "Bonus set — strong day",
+      });
+    }
+
+    return {
+      adaptedWorkout: { warmup: workout.warmup, main, finisher },
+      adaptMeta: meta,
+      readiness,
+    };
+  }, [workout, history, checkin]);
+
   const { totalSets, doneSets } = useMemo(() => {
     const sections: [SectionKey, Exercise[]][] = [
-      ["warmup", workout.warmup],
-      ["main", workout.main],
-      ["finisher", [workout.finisher]],
+      ["warmup", adaptedWorkout.warmup],
+      ["main", adaptedWorkout.main],
+      ["finisher", [adaptedWorkout.finisher]],
     ];
     let total = 0;
     let doneCount = 0;
@@ -204,7 +348,7 @@ export default function WorkoutOfTheDay() {
       }
     }
     return { totalSets: total, doneSets: doneCount };
-  }, [workout, done]);
+  }, [adaptedWorkout, done]);
 
   const pct = totalSets > 0 ? Math.round((doneSets / totalSets) * 100) : 0;
   const complete = totalSets > 0 && doneSets === totalSets;
@@ -218,7 +362,7 @@ export default function WorkoutOfTheDay() {
         data: { user },
       } = await supabase.auth.getUser();
       if (!user) throw new Error("You need to be logged in to save this workout.");
-      const all = [...workout.warmup, ...workout.main, workout.finisher];
+      const all = [...adaptedWorkout.warmup, ...adaptedWorkout.main, adaptedWorkout.finisher];
       const exercises = all.map((ex) => ({
         name: ex.name,
         sets: Array.from({ length: ex.sets }, () => ({
@@ -319,6 +463,17 @@ export default function WorkoutOfTheDay() {
           <p className="mt-2 text-xs text-muted">
             Tap to add what you have — the workout rebuilds instantly around it.
           </p>
+          {readiness ? (
+            <p className="mt-3 inline-block rounded-full bg-sand px-3 py-1.5 text-xs font-bold text-navy-900">
+              Check-in: {readiness.label} — {readiness.advice}
+            </p>
+          ) : (
+            history.length > 0 && (
+              <p className="mt-3 text-xs text-muted">
+                Tip: the 10-second morning check-in above tunes this workout to how you feel.
+              </p>
+            )
+          )}
 
           {loaded && (
             <>
@@ -327,7 +482,7 @@ export default function WorkoutOfTheDay() {
                 Warm-up
               </h3>
               <div className="mt-1 divide-y divide-line">
-                {workout.warmup.map((ex) => (
+                {adaptedWorkout.warmup.map((ex) => (
                   <ExerciseRow
                     key={ex.name}
                     ex={ex}
@@ -345,7 +500,7 @@ export default function WorkoutOfTheDay() {
                 Main circuit
               </h3>
               <div className="mt-1 divide-y divide-line">
-                {workout.main.map((ex, i) => (
+                {adaptedWorkout.main.map((ex, i) => (
                   <ExerciseRow
                     key={ex.name}
                     ex={ex}
@@ -355,6 +510,8 @@ export default function WorkoutOfTheDay() {
                     section="main"
                     done={done}
                     onToggleSet={toggleSet}
+                    badge={adaptMeta.get(ex.name)?.badge}
+                    hint={adaptMeta.get(ex.name)?.hint}
                   />
                 ))}
               </div>
@@ -364,8 +521,9 @@ export default function WorkoutOfTheDay() {
                 <p className="eyebrow">Finisher</p>
                 <div className="mt-1">
                   <ExerciseRow
-                    ex={workout.finisher}
-                    onWatch={() => setWatching(workout.finisher)}
+                    ex={adaptedWorkout.finisher}
+                    onWatch={() => setWatching(adaptedWorkout.finisher)}
+                    badge={adaptMeta.get(adaptedWorkout.finisher.name)?.badge}
                     session={session}
                     section="finisher"
                     done={done}

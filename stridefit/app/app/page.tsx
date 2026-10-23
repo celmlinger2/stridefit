@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import type { CardioLog, FoodLog, WorkoutLog } from "@/lib/database.types";
 import WorkoutOfTheDay from "@/components/WorkoutOfTheDay";
 import DashboardHero from "@/components/DashboardHero";
+import StreakRing from "@/components/StreakRing";
+import CheckInCard from "@/components/CheckInCard";
 
 function dayKey(d: Date): string {
   return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
@@ -19,8 +21,15 @@ export default async function DashboardPage() {
   sevenDaysAgo.setDate(now.getDate() - 6);
   sevenDaysAgo.setHours(0, 0, 0, 0);
 
-  const [{ data: foods }, { data: cardio }, { data: workouts }, { data: profile }] =
-    await Promise.all([
+  const [
+    { data: foods },
+    { data: cardio },
+    { data: workouts },
+    { data: profile },
+    { data: wideFoods },
+    { data: wideCardio },
+    { data: wideWorkouts },
+  ] = await Promise.all([
       supabase
         .from("food_logs")
         .select("calories, logged_at")
@@ -43,6 +52,24 @@ export default async function DashboardPage() {
         .select("display_name, calorie_target")
         .eq("id", user!.id)
         .single(),
+      supabase
+        .from("food_logs")
+        .select("logged_at")
+        .eq("user_id", user!.id)
+        .order("logged_at", { ascending: false })
+        .limit(1000),
+      supabase
+        .from("cardio_logs")
+        .select("performed_at")
+        .eq("user_id", user!.id)
+        .order("performed_at", { ascending: false })
+        .limit(1000),
+      supabase
+        .from("workout_logs")
+        .select("performed_at")
+        .eq("user_id", user!.id)
+        .order("performed_at", { ascending: false })
+        .limit(1000),
     ]);
 
   const foodLogs = (foods ?? []) as Pick<FoodLog, "calories" | "logged_at">[];
@@ -97,6 +124,34 @@ export default async function DashboardPage() {
   while (activeDays.has(dayKey(cursor))) {
     streak += 1;
     cursor.setDate(cursor.getDate() - 1);
+  }
+
+  // Longest streak + ring data from the full (timestamp-only) history.
+  const allDays = new Set<string>();
+  (wideFoods ?? []).forEach((f) => allDays.add(dayKey(new Date(f.logged_at))));
+  (wideCardio ?? []).forEach((c) => allDays.add(dayKey(new Date(c.performed_at))));
+  (wideWorkouts ?? []).forEach((w) => allDays.add(dayKey(new Date(w.performed_at))));
+  let longest = streak;
+  {
+    let run = 0;
+    const d = new Date(now);
+    // Walk back day by day over at most ~3 years of history.
+    for (let i = 0; i < 1100 && allDays.size > 0; i++) {
+      if (allDays.has(dayKey(d))) {
+        run += 1;
+        if (run > longest) longest = run;
+      } else {
+        run = 0;
+      }
+      d.setDate(d.getDate() - 1);
+    }
+  }
+  const activeToday = allDays.has(dayKey(now));
+  const last7: boolean[] = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    last7.push(allDays.has(dayKey(d)));
   }
 
   const name = profile?.display_name || user?.email?.split("@")[0] || "there";
@@ -191,6 +246,21 @@ export default async function DashboardPage() {
           </p>
         </div>
       )}
+
+      {/* Streak ring + morning check-in */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-5">
+        <div className="lg:col-span-3">
+          <StreakRing
+            streak={streak}
+            longest={longest}
+            activeToday={activeToday}
+            last7={last7}
+          />
+        </div>
+        <div className="lg:col-span-2">
+          <CheckInCard />
+        </div>
+      </div>
 
       {/* Workout of the day */}
       <div className="mt-8">

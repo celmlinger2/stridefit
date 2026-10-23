@@ -62,6 +62,17 @@ export interface LoggedExercise {
   sets: ExerciseSet[];
 }
 
+export interface DailyCheckin {
+  id: string;
+  user_id: string;
+  checkin_date: string;
+  sleep_score: number;
+  energy_score: number;
+  soreness_score: number;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface WorkoutLog {
   id: string;
   user_id: string;
