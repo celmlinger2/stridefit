@@ -41,7 +41,18 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <p className="mt-10 border-t border-cream/15 pt-6 text-xs text-cream/60">
+        <div className="mt-10 flex items-center gap-4 border-t border-cream/15 pt-6">
+          {/* Fazier launch badge (directory listing verification) */}
+          <a href="https://fazier.com" target="_blank" rel="noreferrer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=light"
+              alt="Fazier badge"
+              className="h-7 w-auto"
+            />
+          </a>
+        </div>
+        <p className="mt-4 text-xs text-cream/60">
           Stride provides general fitness information only and is not medical
           advice. Consult a qualified professional before changing your diet or
           exercise routine.
