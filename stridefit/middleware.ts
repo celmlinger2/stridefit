@@ -8,10 +8,16 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except static files, images, and crawler
-     * files (robots.txt, sitemap.xml) — no auth check needed for those.
-     * The Supabase helper itself decides which routes need protection.
+     * Run ONLY where the session matters: the protected /app/* area and
+     * the auth pages (login, signup, reset-password). Public pages
+     * (homepage, guides, exercises, calculators) render identically
+     * logged in or out, so they skip middleware entirely — a slow
+     * Supabase auth check can no longer time out a public page
+     * (504 MIDDLEWARE_INVOCATION_TIMEOUT, seen 2026-10-23).
      */
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/app/:path*",
+    "/login",
+    "/signup",
+    "/reset-password",
   ],
 };
