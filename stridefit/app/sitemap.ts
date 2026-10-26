@@ -53,6 +53,16 @@ const PUBLIC_PAGES = [
     priority: 0.7,
   },
   {
+    route: "/beginner-bodyweight-workout",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
+    route: "/how-to-log-food-without-obsessing",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     route: "/calories-to-lose-weight",
     changeFrequency: "monthly",
     priority: 0.7,

@@ -81,4 +81,22 @@ export const GUIDES: Guide[] = [
     published: "Oct 22, 2026",
     readMinutes: 8,
   },
+  {
+    href: "/beginner-bodyweight-workout",
+    category: "Training",
+    title: "Beginner Bodyweight Workout: A No-Equipment Starter Plan",
+    copy: "Five moves, three sets each, about 25 minutes in your living room — plus a 4-week plan to progress it, straight from Stride's Bodyweight Beginner template.",
+    image: "/guides/bodyweight.webp",
+    published: "Oct 26, 2026",
+    readMinutes: 7,
+  },
+  {
+    href: "/how-to-log-food-without-obsessing",
+    category: "Nutrition",
+    title: "How to Log Food Without Obsessing: A Starter System",
+    copy: "Ranges instead of exact targets, hand portions instead of a food scale, and anchor meals on repeat — food logging accurate enough to work, light enough to keep.",
+    image: "/guides/food-log.webp",
+    published: "Oct 26, 2026",
+    readMinutes: 8,
+  },
 ];
