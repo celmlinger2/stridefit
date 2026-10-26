@@ -14,6 +14,33 @@ export type ActivityType =
   | "elliptical"
   | "other";
 export type EventType = "race" | "challenge" | "group_run" | "other";
+export type ChallengeMetric = "workouts" | "cardio_km" | "active_days";
+
+export interface Challenge {
+  id: string;
+  name: string;
+  description: string | null;
+  metric: ChallengeMetric;
+  starts_on: string;
+  ends_on: string;
+  created_by: string | null;
+  is_official: boolean;
+  created_at: string;
+}
+
+export interface ChallengeMember {
+  challenge_id: string;
+  user_id: string;
+  joined_at: string;
+}
+
+export interface LeaderboardRow {
+  user_id: string;
+  display_name: string;
+  workouts: number;
+  cardio_km: number;
+  active_days: number;
+}
 
 export interface Profile {
   id: string;

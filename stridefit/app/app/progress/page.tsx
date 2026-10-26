@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import WinCard from "@/components/WinCard";
 import type { CardioLog, FoodLog, WorkoutLog } from "@/lib/database.types";
 
 function Bars({
@@ -122,6 +123,14 @@ export default async function ProgressPage() {
   workoutLogs.forEach((w) => activeDays.add(dayKey(w.performed_at)));
   cardioLogs.forEach((c) => activeDays.add(dayKey(c.performed_at)));
 
+  // This week (the current 7-day bucket) for the shareable win card.
+  const thisWeek = weeks[weeks.length - 1];
+  const weekActiveDays = new Set<string>();
+  [...workoutLogs, ...cardioLogs].forEach((l) => {
+    if (new Date(l.performed_at) >= sevenDaysAgo) weekActiveDays.add(dayKey(l.performed_at));
+  });
+  const weekLabel = `${sevenDaysAgo.toLocaleDateString(undefined, { month: "short", day: "numeric" })} – ${now.toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
+
   return (
     <div>
       <p className="eyebrow">Your progress</p>
@@ -143,6 +152,18 @@ export default async function ProgressPage() {
             </p>
           </div>
         ))}
+      </div>
+
+      <div className="card mt-6">
+        <h2 className="font-display text-3xl uppercase tracking-wide text-ink">Share your week</h2>
+        <div className="mt-3">
+          <WinCard
+            workouts={thisWeek.workouts}
+            miles={Math.round(thisWeek.km * 0.621371 * 10) / 10}
+            activeDays={weekActiveDays.size}
+            weekLabel={weekLabel}
+          />
+        </div>
       </div>
 
       <div className="card mt-6">
