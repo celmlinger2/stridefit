@@ -99,4 +99,13 @@ export const GUIDES: Guide[] = [
     published: "Oct 26, 2026",
     readMinutes: 8,
   },
+  {
+    href: "/how-to-choose-your-first-5k-or-10k",
+    category: "Running",
+    title: "How to Choose Your First 5K or 10K: A Beginner's Guide to Picking a Race",
+    copy: "5K or 10K, hills, cutoffs, walkers, and the price-increase date most beginners miss — the seven checks to run before any race takes your entry fee.",
+    image: "/guides/first-race.webp",
+    published: "Nov 2, 2026",
+    readMinutes: 6,
+  },
 ];
