@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { EXERCISES } from "@/lib/workout-of-the-day";
 import { exerciseSlug } from "@/lib/exercise-videos";
+import { EVENTS } from "@/lib/events";
 
 // Public, indexable pages only. Auth-gated /app/* dashboard routes,
 // /login and /signup carry no search value and are excluded (and
@@ -102,5 +103,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticPages, ...exercisePages];
+  const eventPages = [
+    {
+      url: `${siteUrl}/events`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...EVENTS.map((e) => ({
+      url: `${siteUrl}/events/${e.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+
+  return [...staticPages, ...exercisePages, ...eventPages];
 }

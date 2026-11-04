@@ -262,6 +262,80 @@ export default function HowToChooseYourFirst5kOr10kPage() {
 
         <section className="mt-10">
           <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
+            Verified starter races near Cincinnati
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted">
+            Advice is easier with real races to point at. These three local
+            events passed every check above — real dates, published prices,
+            and organizers who say where walkers stand — and each one has a
+            full listing in our{" "}
+            <Link
+              href="/events"
+              className="font-semibold text-brand-600 hover:underline"
+            >
+              race events hub
+            </Link>
+            , verified November 4, 2026:
+          </p>
+          <div className="mt-4 space-y-4">
+            <div className="rounded-2xl bg-sand p-5">
+              <p className="font-display text-2xl uppercase tracking-wide text-ink">
+                Cincinnati Cyclones Frozen 5K/10K — Feb 6, 2027
+              </p>
+              <p className="mt-2 text-slate-700">
+                The soonest friendly start line: a 9 AM riverfront race at
+                The Banks, 5K $40 / 10K $45, with prices stepping up after
+                December 31.{" "}
+                <Link
+                  href="/events/cyclones-frozen-5k-10k"
+                  className="font-semibold text-brand-600 hover:underline"
+                >
+                  Full event details
+                </Link>
+              </p>
+            </div>
+            <div className="rounded-2xl bg-sand p-5">
+              <p className="font-display text-2xl uppercase tracking-wide text-ink">
+                Flying Pig 5K &amp; 10K — May 1, 2027
+              </p>
+              <p className="mt-2 text-slate-700">
+                The big-weekend option — walkers officially welcome at a
+                16-minute-mile pace, 5K $55.49 / 10K $66.18 with fees
+                included, and all spring to train for it.{" "}
+                <Link
+                  href="/events/flying-pig-5k-10k"
+                  className="font-semibold text-brand-600 hover:underline"
+                >
+                  Full event details
+                </Link>
+              </p>
+            </div>
+            <div className="rounded-2xl bg-sand p-5">
+              <p className="font-display text-2xl uppercase tracking-wide text-ink">
+                Upstander 5K — Jun 27, 2027
+              </p>
+              <p className="mt-2 text-slate-700">
+                The gentlest debut on the calendar: a walkers-welcome 5K at
+                Union Terminal for $42.50, with a family festival and free
+                museum admission wrapped around it.{" "}
+                <Link
+                  href="/events/upstander-5k"
+                  className="font-semibold text-brand-600 hover:underline"
+                >
+                  Full event details
+                </Link>
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 leading-relaxed text-muted">
+            Entry fees step up as race day approaches, so confirm the
+            current price on the organizer&apos;s registration page before
+            you pay — each listing shows when we last verified it.
+          </p>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="font-display text-4xl uppercase tracking-wide text-ink">
             After you pick one
           </h2>
           <p className="mt-3 leading-relaxed text-muted">
