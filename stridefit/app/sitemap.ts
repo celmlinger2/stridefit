@@ -69,6 +69,11 @@ const PUBLIC_PAGES = [
     priority: 0.7,
   },
   {
+    route: "/best-free-fitness-apps-for-beginners",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     route: "/calories-to-lose-weight",
     changeFrequency: "monthly",
     priority: 0.7,

@@ -108,4 +108,13 @@ export const GUIDES: Guide[] = [
     published: "Nov 2, 2026",
     readMinutes: 6,
   },
+  {
+    href: "/best-free-fitness-apps-for-beginners",
+    category: "Apps",
+    title: "Best Free Fitness Apps for Beginners (2026): An Honest Comparison",
+    copy: "What the free version of Nike Run Club, FitOn, MyFitnessPal, Runkeeper, Strava — and Stride — actually includes, where each paywall sits, and which one fits which beginner.",
+    image: "/guides/free-apps.webp",
+    published: "Nov 9, 2026",
+    readMinutes: 7,
+  },
 ];
