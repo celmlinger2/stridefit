@@ -370,6 +370,18 @@ export default function HowToTrackMacrosPage() {
           </div>
         </section>
 
+        <p className="mt-10 leading-relaxed text-muted">
+          Still deciding which app to log in? Our honest comparison of the{" "}
+          <Link
+            href="/best-free-fitness-apps-for-beginners"
+            className="font-semibold text-brand-700 hover:underline"
+          >
+            best free fitness apps for beginners
+          </Link>{" "}
+          breaks down what each one&apos;s free tier really includes — barcode
+          scanners, paywalls and all.
+        </p>
+
         <div className="mt-12 rounded-3xl bg-navy-900 p-8 text-center">
           <h2 className="font-display text-4xl uppercase tracking-wide text-white">
             Stop guessing tomorrow

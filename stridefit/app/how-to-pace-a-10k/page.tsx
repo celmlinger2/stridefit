@@ -312,7 +312,15 @@ export default function HowToPaceA10KPage() {
             <Link href="/beginner-5k-training-plan" className="font-semibold text-brand-600 hover:underline">
               8-week beginner 5K plan
             </Link>{" "}
-            to build the base first.
+            to build the base first. Already eyeing a race day? Browse{" "}
+            <Link href="/events" className="font-semibold text-brand-600 hover:underline">
+              upcoming races near Cincinnati
+            </Link>
+            , including the{" "}
+            <Link href="/events/flying-pig-5k-10k" className="font-semibold text-brand-600 hover:underline">
+              Flying Pig 5K &amp; 10K
+            </Link>
+            .
           </p>
         </section>
 

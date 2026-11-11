@@ -441,6 +441,18 @@ export default function Beginner5kPlanPage() {
               training 2–3 weeks after their first 5K.
             </li>
             <li>
+              <strong className="text-slate-800">Enter another one.</strong>{" "}
+              A new finish line keeps the habit alive — browse{" "}
+              <Link
+                href="/events"
+                className="font-semibold text-brand-700 hover:underline"
+              >
+                upcoming races near Cincinnati &amp; Northern Kentucky
+              </Link>{" "}
+              and put the next date on your calendar while the first medal is
+              still fresh.
+            </li>
+            <li>
               <strong className="text-slate-800">Just keep running.</strong>{" "}
               Three 30-minute runs a week is a fantastic lifelong habit that
               needs no goal at all.

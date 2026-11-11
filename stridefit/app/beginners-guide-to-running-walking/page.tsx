@@ -319,7 +319,15 @@ export default function BeginnersGuidePage() {
             >
               8-week beginner 5K training plan
             </Link>{" "}
-            picks up exactly where this guide leaves off.
+            picks up exactly where this guide leaves off. And when you&apos;re
+            ready to pin a real date on it, browse{" "}
+            <Link
+              href="/events"
+              className="font-semibold text-brand-600 hover:underline"
+            >
+              upcoming races near Cincinnati
+            </Link>{" "}
+            — a real finish line makes the plan stick.
           </p>
           <p className="mt-3 leading-relaxed text-muted">
             Curious what your easy pace translates to over race distances? Try

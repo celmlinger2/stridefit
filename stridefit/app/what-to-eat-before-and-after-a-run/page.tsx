@@ -317,7 +317,11 @@ export default function WhatToEatBeforeAndAfterARunPage() {
             <Link href="/beginner-5k-training-plan" className="font-semibold text-brand-600 hover:underline">
               8-week beginner 5K plan
             </Link>
-            .
+            . Training toward a specific race day? Browse{" "}
+            <Link href="/events" className="font-semibold text-brand-600 hover:underline">
+              upcoming races near Cincinnati
+            </Link>{" "}
+            and work your fueling practice backward from the date.
           </p>
         </section>
 
