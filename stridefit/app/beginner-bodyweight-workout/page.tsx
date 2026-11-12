@@ -142,7 +142,15 @@ export default function BeginnerBodyweightWorkoutPage() {
               <strong className="text-ink">
                 Two or three sessions a week
               </strong>{" "}
-              on non-consecutive days is plenty to start.
+              on non-consecutive days is plenty to start. Wondering if
+              that&apos;s the right number for you? See{" "}
+              <Link
+                href="/how-many-days-a-week-should-you-work-out"
+                className="font-semibold text-brand-700 hover:underline"
+              >
+                how many days a week should you work out
+              </Link>{" "}
+              for the reasoning and the two-day alternative.
             </li>
             <li className="rounded-2xl bg-sand p-4 text-slate-700">
               <strong className="text-ink">

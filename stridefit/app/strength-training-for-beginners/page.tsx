@@ -132,7 +132,16 @@ export default function StrengthTrainingForBeginnersPage() {
             You&apos;ll train <strong className="text-ink">three days a week on
             non-consecutive days</strong> — Monday, Wednesday, Friday is the
             classic setup, but any three days with a rest day between them
-            works. Each session is <strong className="text-ink">full-body</strong>:
+            works. Not sure whether two, three, or four days fits your life
+            right now? Our guide to{" "}
+            <Link
+              href="/how-many-days-a-week-should-you-work-out"
+              className="font-semibold text-brand-700 hover:underline"
+            >
+              how many days a week a beginner should work out
+            </Link>{" "}
+            walks through the options and when to add a day. Each session is{" "}
+            <strong className="text-ink">full-body</strong>:
             squats, a push, a pull, a hinge, and a core move, every time.
           </p>
           <p className="mt-3 leading-relaxed text-muted">

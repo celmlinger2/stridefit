@@ -327,7 +327,16 @@ export default function WalkingForWeightManagementPage() {
             Spend the next 3–4 days just measuring your normal walking — no
             changes. Then log each walk in Stride; at the end of the week
             you&apos;ll have your real baseline, and Week 1 of the plan above
-            starts from the truth instead of a guess.
+            starts from the truth instead of a guess. Walking is also the
+            ideal rest-day activity between strength sessions — our guide to{" "}
+            <Link
+              href="/how-many-days-a-week-should-you-work-out"
+              className="font-semibold text-brand-700 hover:underline"
+            >
+              how many days a week you should work out
+            </Link>{" "}
+            explains how training days and walking days fit together across
+            one week.
           </p>
         </section>
 

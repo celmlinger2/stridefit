@@ -153,7 +153,14 @@ export default function BeginnersGuidePage() {
             Three sessions in seven days is the sweet spot: enough to build
             momentum, enough recovery to stay injury-free. Do them on
             non-consecutive days if you can (Monday, Wednesday, Friday works
-            well).
+            well). If you&apos;re adding strength work alongside your running,{" "}
+            <Link
+              href="/how-many-days-a-week-should-you-work-out"
+              className="font-semibold text-brand-700 hover:underline"
+            >
+              how many days a week a beginner should work out
+            </Link>{" "}
+            shows how to combine the two without crowding out your rest days.
           </p>
           <ul className="mt-4 space-y-3">
             <li className="rounded-2xl bg-sand p-4 text-slate-700">

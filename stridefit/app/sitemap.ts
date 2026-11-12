@@ -74,6 +74,11 @@ const PUBLIC_PAGES = [
     priority: 0.7,
   },
   {
+    route: "/how-many-days-a-week-should-you-work-out",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     route: "/calories-to-lose-weight",
     changeFrequency: "monthly",
     priority: 0.7,

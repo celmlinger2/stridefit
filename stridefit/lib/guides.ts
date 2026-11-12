@@ -117,4 +117,13 @@ export const GUIDES: Guide[] = [
     published: "Nov 9, 2026",
     readMinutes: 7,
   },
+  {
+    href: "/how-many-days-a-week-should-you-work-out",
+    category: "Training",
+    title: "How Many Days a Week Should a Beginner Work Out? A Realistic Schedule",
+    copy: "Three full-body days is the sweet spot — but two works, and four can too. Sample 2-day, 3-day, and strength-plus-cardio weeks, plus what rest days are actually for.",
+    image: "/guides/workout-schedule.webp",
+    published: "Nov 12, 2026",
+    readMinutes: 7,
+  },
 ];
