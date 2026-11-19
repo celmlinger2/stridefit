@@ -106,7 +106,7 @@ export const EXERCISES: Exercise[] = [
   { name: "Dumbbell hip thrust", equipment: ["dumbbells", "bench"], focus: "Legs", instructions: "Upper back on a bench, dumbbell on your hips, drive up and squeeze.", sets: 3, reps: 12, unit: "reps" },
   { name: "Hammer curls", equipment: ["dumbbells"], focus: "Pull", instructions: "Palms face each other the whole curl, like holding hammers.", sets: 3, reps: 12, unit: "reps" },
   { name: "Concentration curl", equipment: ["dumbbells"], focus: "Pull", instructions: "Elbow braced on your inner thigh, curl slow and squeeze at the top.", sets: 3, reps: 10, unit: "reps" },
-  { name: "Tricep kickbacks", equipment: ["dumbbells"], focus: "Push", instructions: "Hinge forward, extend your arm straight back, squeeze the tricep.", sets: 3, reps: 12, unit: "reps" },
+  { name: "Tricep kickbacks", equipment: ["dumbbells"], focus: "Push", instructions: "Kneel on a bench, extend your arm straight back, squeeze the tricep.", sets: 3, reps: 12, unit: "reps" },
   { name: "Overhead tricep extension", equipment: ["dumbbells"], focus: "Push", instructions: "One dumbbell overhead, lower it behind your head with elbows still.", sets: 3, reps: 12, unit: "reps" },
   { name: "Arnold press", equipment: ["dumbbells"], focus: "Push", instructions: "Start palms facing you, rotate out as you press overhead.", sets: 3, reps: 10, unit: "reps" },
   { name: "Dumbbell shrugs", equipment: ["dumbbells"], focus: "Pull", instructions: "Shoulders up to your ears, hold a beat, lower slow.", sets: 3, reps: 15, unit: "reps" },

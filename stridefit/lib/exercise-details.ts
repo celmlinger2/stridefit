@@ -588,8 +588,8 @@ export const EXERCISE_DETAILS: Record<string, ExerciseDetail> = {
   },
   "tricep-kickbacks": {
     steps: [
-      "Hinge forward with a flat back, one dumbbell in hand, upper arm parallel to the floor.",
-      "Pin your elbow at your side with your forearm hanging down.",
+      "Kneel on a bench with one knee and the same-side hand on it, other foot on the floor, back flat.",
+      "Hold a dumbbell in the free hand, upper arm parallel to the floor, elbow pinned at your side.",
       "Straighten your arm by extending the weight behind you.",
       "Squeeze your tricep at the top, then lower with control.",
     ],
